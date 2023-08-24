@@ -1,13 +1,14 @@
 import {View, Text, Button, TextInput} from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {ROUTES} from '../navigation/routes';
 
 const Login = () => {
   const [name, setName] = useState('');
   const navigation = useNavigation();
 
   const onPressLogin = () => {
-    navigation.navigate('Dashboard', {firstName: name});
+    navigation.navigate(ROUTES.DASHBOARD, {firstName: name});
   };
 
   return (

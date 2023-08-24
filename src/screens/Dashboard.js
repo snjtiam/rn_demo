@@ -1,11 +1,19 @@
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Header from '../components/Header';
 import CircularProgress from 'react-native-circular-progress-indicator';
+import {useNavigation} from '@react-navigation/native';
+import {ROUTES} from '../navigation/routes';
 
 const Dashboard = ({route}) => {
   const {params} = route;
-  console.log('ROUTE', params);
+
+  const navigation = useNavigation();
+
+  const onPressTodoApp = () => {
+    navigation.navigate(ROUTES.TODO_APP);
+  };
+
   return (
     <View style={{flex: 1}}>
       <Header name={params.firstName} />
@@ -18,6 +26,9 @@ const Dashboard = ({route}) => {
           title={'Kcal Over'}
         />
       </View>
+      <TouchableOpacity onPress={onPressTodoApp}>
+        <Text>{'Todo App'}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
