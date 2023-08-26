@@ -1,43 +1,73 @@
 import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
+import InputModal from './InputModal';
 
 const DATA = [
-  'Clean the room',
-  'Send email to John',
-  'Order new bike',
-  'Create SED account',
+  {task: 'Clean the room', isDone: false},
+  {task: 'Send email to John', isDone: false},
+  {task: 'Order new bike', isDone: false},
+  {task: 'Create SED account', isDone: false},
 ];
 
-const TodoItem = ({name}) => {
-  const [isDone, setIsDone] = useState(false);
-
-  const onPress = () => {
-    setIsDone(prev => !prev);
-  };
-
+const TodoItem = ({data, onPress}) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.containerTodoItem}>
-      <EntypoIcon name={isDone ? 'check' : 'circle'} size={16} />
+      <EntypoIcon name={data?.isDone ? 'check' : 'circle'} size={16} />
       <Text
         style={{
           ...styles.txtTodoItem,
-          textDecorationLine: isDone ? 'line-through' : 'none',
+          textDecorationLine: data?.isDone ? 'line-through' : 'none',
         }}>
-        {name}
+        {data?.task}
       </Text>
     </TouchableOpacity>
   );
 };
 
+//MAIN COMPONENT
 const TodoList = () => {
-  const renderItem = ({item, index}) => {
-    return <TodoItem name={item} />;
+  const [tasks, setTasks] = useState(DATA);
+  const [showInput, setShowInput] = useState(false);
+
+  const onPressTaskItem = index => {
+    const tempTask = tasks;
+    tempTask[index] = {...tempTask[index], isDone: !tempTask[index].isDone};
+    setTasks([...tempTask]);
   };
 
+  const onChangeText = () => {};
+  const onSave = () => {
+    setShowInput(prev => !prev);
+  };
+
+  const onPressAdd = () => {
+    setShowInput(prev => !prev);
+  };
+
+  const renderItem = ({item, index}) => {
+    return (
+      <TodoItem
+        data={item}
+        onPress={() => {
+          onPressTaskItem(index);
+        }}
+      />
+    );
+  };
+
+  console.log('TASKS', tasks);
   return (
     <View>
-      <FlatList data={DATA} renderItem={renderItem} />
+      <InputModal
+        visible={showInput}
+        onChangeText={onChangeText}
+        onSave={onSave}
+      />
+      <TouchableOpacity style={{alignSelf: 'flex-end'}} onPress={onPressAdd}>
+        <Text>Add</Text>
+      </TouchableOpacity>
+      <FlatList data={tasks} renderItem={renderItem} />
     </View>
   );
 };
