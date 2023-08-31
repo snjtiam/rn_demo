@@ -1,13 +1,19 @@
 import {View, Text, Modal, TextInput, StyleSheet, Button} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 
-const InputModal = ({visible, onChangeText, onSave}) => {
+const InputModal = ({visible, onSave}) => {
+  const [text, setText] = useState('');
+
+  const _onSave = () => {
+    onSave(text);
+  };
+
   return (
     <Modal visible={visible} animationType="slide" transparent>
       <View style={styles.rootContainer}>
         <View style={styles.container}>
-          <TextInput placeholder="Enter task" onChangeText={onChangeText} />
-          <Button title="Save" color={'lightgreen'} onPress={onSave} />
+          <TextInput placeholder="Enter task" onChangeText={setText} />
+          <Button title="Save" color={'lightgreen'} onPress={_onSave} />
         </View>
       </View>
     </Modal>
