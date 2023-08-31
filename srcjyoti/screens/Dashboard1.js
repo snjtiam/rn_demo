@@ -1,28 +1,40 @@
-import {View, Text} from 'react-native'; 
+import {View, Text, StyleSheet,Button} from 'react-native'; 
 import React from 'react'; 
 import Header from '../components/Header'; 
-// import CircularProgress from 'react-native-circular-progress-indicator'; 
 import Section from '../components/section'; 
 import Sectiona from '../components/section2';
+import {useNavigation} from '@react-navigation/native';
+import {ROUTES} from '../navigation/routes';
 
 const Dashboard1 = () => { 
+  const navigation = useNavigation();
+
+  const nextScreen=()=>{
+    navigation.navigate(ROUTES.TODO_APP);
+  }
+
   return ( 
     <View > 
-      <Header name={'Jyoti'} /> 
+      <Header/> 
       <Section/>
       <Sectiona/>
       
-      {/* <View style={{alignItems: 'center', marginVertical: 16}}> 
-        <CircularProgress 
-          progressValueColor={'#272829'} 
-          activeStrokeColor={'#FFBA86'} 
-          inActiveStrokeColor={'transparent'} 
-          value={58} 
-          title={'Kcal Over'} 
-        /> 
-      </View>  */}
+      <View style={style.buttom}><Button title='Next-Screen' onPress={nextScreen} color={'black'}/></View>
+      
     </View> 
   ); 
 }; 
  
 export default Dashboard1;
+
+const style = StyleSheet.create({
+  buttom:{
+    borderWidth:1,
+    marginTop:30, 
+    padding:4,
+    flexDirection:'row',
+    alignSelf:'center',
+  },
+})
+
+

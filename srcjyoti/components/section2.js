@@ -24,7 +24,6 @@ const Sectiona = () => {
     </View>
     </View> 
 
-    <View style={style.buttom}><Button title='Next-Screen' color={'black'}/></View>
     
     </View>
    
@@ -60,22 +59,6 @@ const style = StyleSheet.create({
       color:'white',
        fontSize: 25
     },
-
-    buttom:{
-      borderWidth:1,
-      marginTop:30, 
-      padding:4,
-      flexDirection:'row',
-      alignSelf:'center',
-    },
-
-    // buttomSection:{
-    //   fontSize:20,
-    //   textAlignVertical:'center',
-    //   paddingHorizontal:30,
-    //   color:'#fff',
-    //   backgroundColor:'pink'
-    // }
 })
 
 export default Sectiona;
