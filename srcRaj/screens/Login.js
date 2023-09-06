@@ -13,7 +13,7 @@ const Login = () => {
 
   return (
     <View style={{flex: 1, justifyContent: 'center'}}>
-      <Text>Login</Text>
+      <Text>Signup</Text>
 
       <TextInput
         placeholder="Enter name"
