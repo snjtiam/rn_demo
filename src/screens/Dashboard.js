@@ -14,6 +14,10 @@ const Dashboard = ({route}) => {
     navigation.navigate(ROUTES.TODO_APP);
   };
 
+  const onPressWeatherApp = () => {
+    navigation.navigate(ROUTES.WEATHER_APP);
+  };
+
   return (
     <View style={{flex: 1}}>
       <Header name={params.firstName} />
@@ -28,6 +32,10 @@ const Dashboard = ({route}) => {
       </View>
       <TouchableOpacity onPress={onPressTodoApp}>
         <Text>{'Todo App'}</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={onPressWeatherApp}>
+        <Text>{'Weather App'}</Text>
       </TouchableOpacity>
     </View>
   );

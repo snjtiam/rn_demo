@@ -2,6 +2,7 @@ const ROUTES = {
   LOGIN: 'LOGIN',
   DASHBOARD: 'DASHBOARD',
   TODO_APP: 'TODO_APP',
+  WEATHER_APP: 'WEATHER_APP',
 };
 
 export {ROUTES};
