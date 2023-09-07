@@ -4,6 +4,8 @@ import {ROUTES} from './routes';
 import Dashboard1 from '../screens/Dashboard1';
 import Login from '../screens/Lg';
 import TodoApp from '../screens/TodoApp';
+import Forthscreen from '../screens/Forthscreen';
+import Details from '../components/Forth_imgUI/imagesDetails';
 
 
 const RootStack = () => {
@@ -14,6 +16,8 @@ const RootStack = () => {
         <Stack.Screen name={ROUTES.LOGIN} component={Login} />
         <Stack.Screen name={ROUTES.DASHBOARD} component={Dashboard1} />
         <Stack.Screen name={ROUTES.TODO_APP} component={TodoApp} />
+        <Stack.Screen name={ROUTES.FORTH_SCREEN} component={Forthscreen} />
+        <Stack.Screen name={ROUTES.IMAGE1_DETAILS} component={Details} />
 
       </Stack.Navigator>
     </NavigationContainer>

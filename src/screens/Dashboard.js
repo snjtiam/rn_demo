@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import {ROUTES} from '../navigation/routes';
 
 const Dashboard = ({route}) => {
-  const {params} = route;
+  const {params} = route;    // problem
 
   const navigation = useNavigation();
 
