@@ -17,6 +17,19 @@ class WeatherApis {
       console.log('ERROR', error);
     }
   }
+  async getLocationWeatherDetail(locationCode) {
+    console.log('CODE', locationCode);
+    try {
+      const response = await fetch(
+        `${BASE_URL}forecasts/v1/daily/1day/${locationCode}?apikey=${WEATHER_API_KEY}`,
+      );
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      console.log('ERROR', error);
+    }
+  }
 
   async getTopCitiesThen({count}) {
     const response = await fetch(
