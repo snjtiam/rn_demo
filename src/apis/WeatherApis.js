@@ -10,7 +10,7 @@ class WeatherApis {
         },
       );
       const data = await response.json();
-      console.log('RESPONSE', data.length);
+      console.log('THIS IS RESPONSE', data.length);
 
       return data;
     } catch (error) {
