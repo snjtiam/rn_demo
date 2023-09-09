@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const {BASE_URL, WEATHER_API_KEY} = require('../constants/constant');
 
 class WeatherApis {
@@ -46,6 +48,15 @@ class WeatherApis {
       .catch(err => {
         console.log('ERROR', err);
       });
+  }
+
+  async getTopCitiesAxios({count}) {
+    const response = await axios({
+      method: 'get',
+      url: `${BASE_URL}locations/v1/topcities/${count}?apikey=${WEATHER_API_KEY}`,
+    });
+
+    return response;
   }
 }
 
