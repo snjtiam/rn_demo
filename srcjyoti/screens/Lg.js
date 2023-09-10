@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput,Button} from 'react-native';
+import {View, Text, TextInput,Button, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {ROUTES} from '../navigation/routes';
 
@@ -11,7 +11,11 @@ const Login = () => {
 
   const onPressLogin=()=>{
     navigation.navigate(ROUTES.DASHBOARD, {firstName: name});
-  }
+  };
+
+  const onPressWeatherApp=()=>{
+    navigation.navigate(ROUTES.WEATHER_APP);
+  };
 
   return (
     <View>
@@ -23,6 +27,10 @@ const Login = () => {
         }}
       />
       <Button title={'Login  '+ name} onPress={onPressLogin} />
+
+      <TouchableOpacity onPress={onPressWeatherApp}>
+        <Text style={{backgroundColor:'skyblue', marginRight:300, marginTop:20, padding:10, color:'black'}}>{'Weather App'}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

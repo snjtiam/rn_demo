@@ -1,9 +1,0 @@
-
-
-
-class WeatherApis{
-    async getTopCities(){
-        
-
-    }
-}
