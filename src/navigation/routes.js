@@ -2,6 +2,8 @@ const ROUTES = {
   LOGIN: 'LOGIN',
   DASHBOARD: 'DASHBOARD',
   TODO_APP: 'TODO_APP',
+  DETAILS1:"DETAILS1"
+
 };
 
 export {ROUTES};

@@ -1,0 +1,6 @@
+const ROUTES={
+    LOGIN:"LOGIN",
+    DASHBOARD:"DASHBOARD",
+    DETAILS1:"DETAILS1"
+}
+export {ROUTES};
