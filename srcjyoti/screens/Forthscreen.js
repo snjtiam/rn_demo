@@ -10,7 +10,7 @@ const Forthscreen=()=>{
     const navigation = useNavigation();
 
     const backto_todolist=()=>{
-    navigation.navigate(ROUTES.TODO_APP);
+    navigation.navigate(ROUTES.LOGIN);
   }
 
     return(

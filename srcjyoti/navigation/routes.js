@@ -3,9 +3,14 @@ const ROUTES = {
   DASHBOARD: 'DASHBOARD',
   TODO_APP: 'TODO_APP',
   FORTH_SCREEN: 'FORTH_SCREEN',
-  IMAGE1_DETAILS: 'IMAGE1_DETAILS',
+  FirstImgDetails: 'FirstImgDetails',
+  SecondImgDetails: 'SecondImgDetails',
+  ThirdImgDetails: 'ThirdImgDetails',
+  ForthImgDetails: 'ForthImgDetails',
+  FifthImgDetails: 'FifthImgDetails',
   WEATHER_APP: 'WEATHER_APP',
   WEATHER_DETAIL: 'WEATHER_DETAIL',
+  Detailssss:'Detailssss',
 };
 
 export {ROUTES};
