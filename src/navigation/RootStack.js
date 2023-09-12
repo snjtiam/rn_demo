@@ -4,6 +4,8 @@ import {Dashboard, Login, Shisham} from '../screens';
 import DashboardNavigator from './DashboardNavigtor';
 import {ROUTES} from './routes';
 import TodoApp from '../screens/TodoApp';
+import WeatherApp from '../screens/WeatherApp/WeatherApp';
+import WeatherDetail from '../screens/WeatherApp/WeatherDetail';
 
 const RootStack = () => {
   const Stack = createNativeStackNavigator();
@@ -13,6 +15,8 @@ const RootStack = () => {
         <Stack.Screen name={ROUTES.LOGIN} component={Login} />
         <Stack.Screen name={ROUTES.DASHBOARD} component={Dashboard} />
         <Stack.Screen name={ROUTES.TODO_APP} component={TodoApp} />
+        <Stack.Screen name={ROUTES.WEATHER_APP} component={WeatherApp} />
+        <Stack.Screen name={ROUTES.WEATHER_DETAIL} component={WeatherDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -6,12 +6,16 @@ import {useNavigation} from '@react-navigation/native';
 import {ROUTES} from '../navigation/routes';
 
 const Dashboard = ({route}) => {
-  const {params} = route;
+  const {params} = route;    // problem
 
   const navigation = useNavigation();
 
   const onPressTodoApp = () => {
     navigation.navigate(ROUTES.TODO_APP);
+  };
+
+  const onPressWeatherApp = () => {
+    navigation.navigate(ROUTES.WEATHER_APP);
   };
 
   return (
@@ -28,6 +32,10 @@ const Dashboard = ({route}) => {
       </View>
       <TouchableOpacity onPress={onPressTodoApp}>
         <Text>{'Todo App'}</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={onPressWeatherApp}>
+        <Text>{'Weather App'}</Text>
       </TouchableOpacity>
     </View>
   );
