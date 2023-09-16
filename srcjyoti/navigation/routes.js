@@ -11,6 +11,7 @@ const ROUTES = {
   WEATHER_APP: 'WEATHER_APP',
   WEATHER_DETAIL: 'WEATHER_DETAIL',
   Detailssss:'Detailssss',
+  TAB: 'TAB',
 };
 
 export {ROUTES};

@@ -4,8 +4,14 @@ import WeatherApi_jyoti from "../../Apis/WeatherApi_jyoti";
 
 const WEATHER_APP = () =>{
 
+    // useEffect(()=>{
+    //     WeatherApi_jyoti.TopCityList({count:50});
+
+    // },[]);
+
     useEffect(()=>{
-        WeatherApi_jyoti.getTopCities({count:50});
+        WeatherApi_jyoti.TopCityListThen({count:100});
+
     },[]);
 
     return(
