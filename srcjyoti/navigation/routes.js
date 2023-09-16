@@ -10,7 +10,8 @@ const ROUTES = {
   FifthImgDetails: 'FifthImgDetails',
   WEATHER_APP: 'WEATHER_APP',
   WEATHER_DETAIL: 'WEATHER_DETAIL',
-  Detailssss:'Detailssss',
+  Detailssss: 'Detailssss',
+  DESTINATION_DETAIL: 'DESTINATION_DETAIL',
   TAB: 'TAB',
 };
 

@@ -8,56 +8,52 @@ import {
   TouchableOpacity,
   ImageBackground,
   SafeAreaView,
-  FlatList
+  FlatList,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {ROUTES} from '../navigation/routes';
+import DestinationComponent from './Forth_imgUI/DestinationComponent';
 
 const ForthUI = () => {
-  const data=[
+  const navigation = useNavigation();
+  const data = [
     {
-      id:1,
-      title:"raj",
-      imagesUrl:<ImageBackground  style={{height:250, width:195}} source={require('../Assets/Ger1.jpeg')}/>,
+      imgUrl: require('../assets/Mt.everest.jpg'),
+      destination: 'Mount Everest',
+      country: 'MT.Everest,Nepal',
+      description:
+        "Kathmandu, Nepal's capital, is set in a valley surrounded by the Himalayan mountains. At the heart of the old city's mazelike alleys is Durbar Square, which becomes frenetic during Indra Jatra, a religious festival featuring masked dances. Many of the city's historic sites were damaged or destroyed by a 2015 earthquake. Durbar Square's palace, Hanuman Dhoka, and Kasthamandap, a wooden Hindu temple, are being rebuiltBharatpur, located in the Indian state of Rajasthan, is a captivating destination for tourists. Renowned for its enchanting Keoladeo National Park, a UNESCO World Heritage Site, Bharatpur offers a unique opportunity to explore diverse ecosystems and witness an array of avian species, making it a birdwatcher's paradise. The city also boasts a rich historical heritage, with attractions like the majestic Lohagarh Fort and the intricately designed Deeg Palace, offering a glimpse into its royal past. is a captivating destination for tourists. Renowned for its enchanting Keoladeo National Park, a UNESCO World Heritage Site, Bharatpur offers a unique opportunity to explore diverse ecosystems and witness an array of avian species, making it a birdwatcher's paradise. The city also boasts a rich historical heritage, with attractions like the majestic Lohagarh Fort and the intricately designed Deeg Palace, offering a glimpse into its royal past.",
     },
     {
-      id:2,
-      title:"raj",
-      imagesUrl:<ImageBackground  style={{height:250, width:195}} source={require('../Assets/Ger2.jpeg')}/> ,
+      imgUrl: require('../assets/Pokhara.jpg'),
+      destination: 'Gateway Annapurna',
+      country: 'Pokhara,Nepal',
+      description:
+        "Kathmandu, Nepal's capital, is set in a valley surrounded by the Himalayan mountains. At the heart of the old city's mazelike alleys is Durbar Square, which becomes frenetic during Indra Jatra, a religious festival featuring masked dances. Many of the city's historic sites were damaged or destroyed by a 2015 earthquake. Durbar Square's palace, Hanuman Dhoka, and Kasthamandap, a wooden Hindu temple, are being rebuiltBharatpur, located in the Indian state of Rajasthan, is a captivating destination for tourists. Renowned for its enchanting Keoladeo National Park, a UNESCO World Heritage Site, Bharatpur offers a unique opportunity to explore diverse ecosystems and witness an array of avian species, making it a birdwatcher's paradise. The city also boasts a rich historical heritage, with attractions like the majestic Lohagarh Fort and the intricately designed Deeg Palace, offering a glimpse into its royal past. is a captivating destination for tourists. Renowned for its enchanting Keoladeo National Park, a UNESCO World Heritage Site, Bharatpur offers a unique opportunity to explore diverse ecosystems and witness an array of avian species, making it a birdwatcher's paradise. The city also boasts a rich historical heritage, with attractions like the majestic Lohagarh Fort and the intricately designed Deeg Palace, offering a glimpse into its royal past.",
     },
     {
-      id:3,
-      title:"raj",
-      imagesUrl:<ImageBackground  style={{height:250, width:195}} source={require('../Assets/Ger3.jpeg')}/> ,
+      imgUrl: require('../assets/Nagarkot.jpg'),
+      destination: '28Km from Ktm',
+      country: 'Nagarkot,Nepal',
+      description:
+        "Kathmandu, Nepal's capital, is set in a valley surrounded by the Himalayan mountains. At the heart of the old city's mazelike alleys is Durbar Square, which becomes frenetic during Indra Jatra, a religious festival featuring masked dances. Many of the city's historic sites were damaged or destroyed by a 2015 earthquake. Durbar Square's palace, Hanuman Dhoka, and Kasthamandap, a wooden Hindu temple, are being rebuiltBharatpur, located in the Indian state of Rajasthan, is a captivating destination for tourists. Renowned for its enchanting Keoladeo National Park, a UNESCO World Heritage Site, Bharatpur offers a unique opportunity to explore diverse ecosystems and witness an array of avian species, making it a birdwatcher's paradise. The city also boasts a rich historical heritage, with attractions like the majestic Lohagarh Fort and the intricately designed Deeg Palace, offering a glimpse into its royal past. is a captivating destination for tourists. Renowned for its enchanting Keoladeo National Park, a UNESCO World Heritage Site, Bharatpur offers a unique opportunity to explore diverse ecosystems and witness an array of avian species, making it a birdwatcher's paradise. The city also boasts a rich historical heritage, with attractions like the majestic Lohagarh Fort and the intricately designed Deeg Palace, offering a glimpse into its royal past.",
     },
     {
-      id:4,
-      title:"raj",
-      imagesUrl:<ImageBackground  style={{height:250, width:195}} source={require('../Assets/Ger4.jpeg')}/> ,
-    },    
-   ]
+      imgUrl: require('../assets/Bhaktapur.jpg'),
+      destination: 'Taumadhi Square',
+      country: 'Bhaktapur,Nepal',
+      description:
+        "Kathmandu, Nepal's capital, is set in a valley surrounded by the Himalayan mountains. At the heart of the old city's mazelike alleys is Durbar Square, which becomes frenetic during Indra Jatra, a religious festival featuring masked dances. Many of the city's historic sites were damaged or destroyed by a 2015 earthquake. Durbar Square's palace, Hanuman Dhoka, and Kasthamandap, a wooden Hindu temple, are being rebuiltBharatpur, located in the Indian state of Rajasthan, is a captivating destination for tourists. Renowned for its enchanting Keoladeo National Park, a UNESCO World Heritage Site, Bharatpur offers a unique opportunity to explore diverse ecosystems and witness an array of avian species, making it a birdwatcher's paradise. The city also boasts a rich historical heritage, with attractions like the majestic Lohagarh Fort and the intricately designed Deeg Palace, offering a glimpse into its royal past. is a captivating destination for tourists. Renowned for its enchanting Keoladeo National Park, a UNESCO World Heritage Site, Bharatpur offers a unique opportunity to explore diverse ecosystems and witness an array of avian species, making it a birdwatcher's paradise. The city also boasts a rich historical heritage, with attractions like the majestic Lohagarh Fort and the intricately designed Deeg Palace, offering a glimpse into its royal past.",
+    },
+  ];
+
+  const onPress = data => {
+    navigation.navigate(ROUTES.DESTINATION_DETAIL, {...data});
+  };
 
   return (
     <View>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <View style={{flexDirection: 'row', flex: 1}}>
-          <Image
-            style={{height: 45, width: 45, borderRadius: 100, margin: 8}}
-            source={require('../assets/Person2.jpg')}
-          />
-          <Text style={{fontSize: 20, marginTop: 20, color: '#111111'}}>
-            Hi,
-            <Text style={{fontWeight: 'bold', color: 'black'}}>
-              Jyoti Gupta
-            </Text>
-          </Text>
-        </View>
-        <Text style={{marginTop: '20', alignSelf: 'center'}}>
-          <Ionicons name="notifications" size={33} color="black" />
-        </Text>
-      </View>
-
       <TextInput
         placeholder="  Search your place"
         style={{
@@ -68,23 +64,27 @@ const ForthUI = () => {
         }}
       />
 
-      {/* <Second />
-      <Third />
-      <Forth />
-      <Fifth /> */}
-
-<SafeAreaView>
-        <FlatList
+      <SectionTitle title={'Special for you'} />
+      <FlatList
+        horizontal
+        showsHorizontalScrollIndicator={false}
         data={data}
-        renderItem={({item})=><Text>{item.imagesUrl}</Text>}
-        />
-        
-    </SafeAreaView>
+        renderItem={({item}) => (
+          <DestinationComponent
+            imgUrl={item.imgUrl}
+            destination={item.destination}
+            country={item.country}
+            onPress={() => {
+              onPress(item);
+            }}
+          />
+        )}
+      />
     </View>
   );
 };
 
-const Second = () => {
+const SectionTitle = ({title}) => {
   return (
     <View
       style={{
@@ -94,7 +94,7 @@ const Second = () => {
         paddingHorizontal: 10,
       }}>
       <Text style={{fontWeight: 'bold', fontSize: 23, color: 'black'}}>
-        Special for you
+        {title}
       </Text>
       <Text style={{fontSize: 18, paddingTop: 5.5}}>Explore</Text>
     </View>
@@ -127,52 +127,6 @@ const Third = () => {
     <View>
       <ScrollView horizontal={true}>
         {/* ---------------using ImageBackground------------------ */}
-        <TouchableOpacity
-          style={{
-            marginLeft: 15,
-            marginHorizontal: 10,
-            borderRadius: 20,
-            overflow: 'hidden',
-          }}
-          onPress={firstimg}>
-          <ImageBackground
-            style={{height: 255, width: 195, justifyContent: 'flex-end'}}
-            source={require('../assets/Ktm.jpg')}>
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 17,
-                fontWeight: 'bold',
-                color: '#fff',
-                backgroundColor: 'skyblue',
-              }}>
-              {' '}
-              Kathmandu,Nepal
-            </Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                backgroundColor: 'skyblue',
-                marginBottom: 1,
-              }}>
-              <Ionicons
-                name="location"
-                size={22}
-                color="white"
-                style={{marginLeft: 10}}
-              />
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 17,
-                  fontWeight: 'bold',
-                  color: '#fff',
-                }}>
-                Drubar Square
-              </Text>
-            </View>
-          </ImageBackground>
-        </TouchableOpacity>
 
         {/* ---------------using Image------------------ */}
         {/* <TouchableOpacity style={{ marginLeft: 15, marginHorizontal: 10, borderRadius: 20, overflow: 'hidden' }}>

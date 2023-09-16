@@ -11,6 +11,7 @@ import {ThirdImgDetails} from '../components/Forth_imgUI/imagesDetails';
 import {ForthImgDetails} from '../components/Forth_imgUI/imagesDetails';
 import {FifthImgDetails} from '../components/Forth_imgUI/imagesDetails';
 import WEATHER_APP from '../screens/WeatherApp/WeatherApp';
+import DestnationDetail from '../screens/UI/DestnationDetail';
 
 const RootStack = () => {
   const Stack = createNativeStackNavigator();
@@ -42,6 +43,10 @@ const RootStack = () => {
           component={FifthImgDetails}
         />
         <Stack.Screen name={ROUTES.WEATHER_APP} component={WEATHER_APP} />
+        <Stack.Screen
+          name={ROUTES.DESTINATION_DETAIL}
+          component={DestnationDetail}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
