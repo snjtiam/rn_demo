@@ -1,10 +1,10 @@
 import {View, Text, StyleSheet,Button} from 'react-native'; 
 import React from 'react'; 
-import Header from '../components/Header'; 
-import Section from '../components/section'; 
-import Sectiona from '../components/section2';
+import Header from '../../components/Header'; 
+import Section from '../../components/section'; 
+import Sectiona from '../../components/section2';
 import {useNavigation} from '@react-navigation/native';
-import {ROUTES} from '../navigation/routes';
+import {ROUTES} from '../../navigation/routes';
 
 const Dashboard1 = () => { 
   const navigation = useNavigation();

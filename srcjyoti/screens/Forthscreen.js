@@ -4,8 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ROUTES} from '../navigation/routes';
-import ForthUI from '../components/ForthUI';
-
+import DestinationUI from '../components/DestinationUI';
 const Forthscreen = () => {
   const navigation = useNavigation();
 
@@ -45,7 +44,7 @@ const Forthscreen = () => {
           </Text>
         </View>
       </View>
-      <ForthUI />
+      <DestinationUI />
     </View>
   );
 };

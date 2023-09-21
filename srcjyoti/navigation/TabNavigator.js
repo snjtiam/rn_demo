@@ -2,7 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 // import { ROUTES } from './routes';
 // import Login from '../screens/Lg';
 import TodoApp from '../screens/TodoApp';
-import Dashboard1 from '../screens/Dashboard1';
+import Dashboard1 from '../screens/UI/Dashboard1';
 
 function JyotiTab() {
   const Tab = createBottomTabNavigator();

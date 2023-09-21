@@ -4,33 +4,31 @@ const {BASE_URL, WEATHER_API_KEY} = require('../components/Constant_Api_Link')
 
 class WeatherApis_jyoti{
   // 1st class-------------------------------------------------
-  // async TopCityList ({count}){
-  //   try{
-  //     const response = await fetch(
-  //       `${BASE_URL}locations/v1/topcities/${count}?apikey=${WEATHER_API_KEY}`,{ method : 'GET'},);
+  async TopCityList ({count}){
+    try{
+      const response = await fetch(
+        `${BASE_URL}locations/v1/topcities/${count}?apikey=${WEATHER_API_KEY}`,{ method : 'GET'},);
       
-  //       const data = await response.json();
-  //       console.log('CORRECT', data);
-  //       console.log('THIS IS RESPONSE', data.length);
-  //       return data;
-  //   }catch(error){
-  //       console.log('WRONG', error);
-  //     }
+        const data = await response.json();
+        console.log('CORRECT', data);
+        console.log('THIS IS RESPONSE------------------------------->', data.length);
+        return data;
+    }catch(error){
+        console.log('WRONG', error);
+      }
 
-  // }
+  }
   //2nd class--------------------------------------------------
 
   async TopCityListThen ({count}){
     
-      const response = await fetch(
+       fetch(
         `${BASE_URL}locations/v1/topcities/${count}?apikey=${WEATHER_API_KEY}`,{ method : 'GET'},
         )
-          .then(
-            response=>{
-              const data = response.json();
-              console.log('CORRECT', data);
-              console.log('THIS IS RESPONSE', data.length);
-              return data;
+          .then( response=> response.json())
+          .then(response=>{
+              console.log('CORRECT',  response);
+              console.log('THIS IS RESPONSE-----------------------------------', response.length);
             })
             .catch(err=>{
               console.log('fault',err)
@@ -39,10 +37,6 @@ class WeatherApis_jyoti{
           }
   }
   
-
-
-
-
 
 export default new WeatherApis_jyoti();
 
