@@ -1,6 +1,5 @@
-const ROUTES={
+export const Routes ={
     LOGIN:"LOGIN",
     DASHBOARD:"DASHBOARD",
-    DETAILS1:"DETAILS1"
+    DASHBOARDDETAILS:"DASHBOARDDETAILS"
 }
-export {ROUTES};

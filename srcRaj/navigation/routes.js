@@ -1,7 +1,0 @@
-const ROUTES = {
-  LOGIN: 'LOGIN',
-  DASHBOARD: 'DASHBOARD',
-  TODO_APP: 'TODO_APP',
-};
-
-export {ROUTES};

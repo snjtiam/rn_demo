@@ -1,101 +1,69 @@
+import { View, Text,Image,FlatList,TextInput } from 'react-native'
 import React from 'react'
-import {View,Text,Button,Image,TextInput, ImageBackground,ScrollView, Touchable, TouchableOpacity} from 'react-native'
-import { useNavigation } from '@react-navigation/native'
-// import { ROUTES } from '../../src/navigation/routes';
-import { ROUTES } from '../Navigation/ROUTES'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {Dashboardcomp} from '../components/UI/dashboardcomp';
+import { PopularPlace } from '../components/UI/dashboardcomp';
+import { useNavigation } from '@react-navigation/native';
+import { Routes } from '../navigation/routes';
 
 const Dashboard = () => {
-  
+  const data1=[
+    {
+      imgurl:require("../Assets/Ger3.jpeg"),
+      country:"Germany,Berlin",
+      city:"Berlin,Brandenburg Gate",
 
+    },
+    {
+      imgurl:require("../Assets/Ger2.jpeg"),
+      country:"Germany,Berlin",
+      city:"Berlin,Brandenburg Gate",
+
+    },
+    {
+      imgurl:require("../Assets/Ger1.jpeg"),
+      country:"Germany,Berlin",
+      city:"Berlin,Brandenburg Gate",
+
+    },
+    {
+      imgurl:require("../Assets/Ger4.jpeg"),
+      country:"Germany,Berlin",
+      city:"Berlin,Brandenburg Gate",
+
+    }
+
+  ]
+  const raj=useNavigation();
+  const onpressimg=(item)=>{
+    raj.navigate(Routes.DASHBOARDDETAILS, {...item})
+
+  }
   return (
-    <View>
-      <View style={{flexDirection:"row",justifyContent:"space-between"}}>
-     <View style={{flexDirection:"row",marginTop:4}}>
-        <Image style={{height:47,width:47,borderRadius:100,margin:8}} source={require("../Assets/profile.jpeg")}/>
-        <Text style={{fontSize:20,fontWeight:400,marginTop:20}}>Hi,<Text style={{fontSize:20,fontWeight:900}}>JOHN CENA</Text></Text>
-     </View>
-     <View style={{marginRight:10,marginTop:15}}>
-        <Icon name="notifications-active" size={35}/>
+    
+    <View style={{flex:1}}>
+        <View style={{flexDirection:'row',justifyContent:"space-between"}} >
+            <View style={{flexDirection:"row"}}>
+               <Image style={{borderRadius:100,height:50,width:50,marginTop:10}} source={require("../Assets/profile.jpeg")}/>
+               <Text style={{fontSize:20,fontWeight:"500",marginTop:20,marginLeft:10}}>Hi,<Text style={{fontSize:22,fontWeight:"900"}}>John Cena</Text></Text>
+            </View>
+           <Icon name="bell" size={30} style={{marginTop:15,marginRight:20}} />
         </View>
-    </View>
-    <TextInput style={{borderWidth:1,borderRadius:10,backgroundColor:"white",color:"black",marginTop:10}} placeholder='Search Your Place'/>
-    <View style={{flexDirection:"row",marginTop:15,justifyContent:"space-between"}}>
-      <Text style={{fontSize:27,fontWeight:"bold",color:"black"}}>Special For You</Text>
-      <Text style={{fontSize:27}}>Explore</Text>
-    </View>
-     <Section/>
-     <Section2/>
-     <Section3/>
+        <View>
+            <TextInput placeholder='Search your Place' style={{paddingLeft:10,borderWidth:2,marginTop:10,borderRadius:100,fontWeight:"900", fontSize:20}}/>
+        </View>
+        <FlatList
+        horizontal
+          data={data1}
+          renderItem={({item})=>(
+            <Dashboardcomp imgurl={item.imgurl} country={item.country} city={item.city} onpress={()=>{onpressimg(item)}}/>
+           )}
+        />
+        <PopularPlace/>
+        
 
     </View>
   )
 }
-
-const Section=()=>{
-  const raj =useNavigation();
-  const img1=()=>{
-    raj.navigate(ROUTES.DETAILS1)
-  } 
-
-  return(
-    <View>
-      <ScrollView horizontal={true}>
-      <TouchableOpacity onPress={img1} style={{borderRadius:20,overflow:"hidden",marginHorizontal:10,marginTop:25}}>
-    <ImageBackground  style={{height:250, width:195}} source={require('../Assets/Ger1.jpeg')}/>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={{borderRadius:20,overflow:"hidden",marginHorizontal:10,marginTop:25}}>
-    <ImageBackground style={{height:250, width:195}} source={require('../Assets/Ger2.jpeg')}/>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={{borderRadius:20,overflow:"hidden",marginHorizontal:10,marginTop:25}}>
-    <ImageBackground style={{height:250, width:195}} source={require('../Assets/Ger3.jpeg')}/>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={{borderRadius:20,overflow:"hidden",marginHorizontal:10,marginTop:25}}>
-    <ImageBackground style={{height:250, width:195}} source={require('../Assets/Ger4.jpeg')}/>
-      </TouchableOpacity>
-      </ScrollView>
-      
-
-
-
-    </View>
-  )
-};
-
-
-const Section2=()=>{
-  return(
-     <View style={{flexDirection:"row",marginTop:25,justifyContent:"space-between"}}>
-      <Text style={{fontSize:27,fontWeight:"bold",color:"black"}}> Popular Place</Text>
-      <Text style={{fontSize:27}}>Explore</Text>
-    </View>
-  )
-}
-
-const Section3=()=>{
-  return(
-    <View style={{flexDirection:"row",marginTop:20,marginHorizontal:30,paddingVertical:3,borderRadius:20, backgroundColor:"white"}}>
-      <View style={{marginRight:15}}>
-       <Image style={{height:118,width:105,borderRadius:20,marginLeft:10}} source={require("../Assets/Ger1.jpeg")}/>
-      </View>
-      <View style={{width:200}}>
-        <Text style={{fontSize:19,fontWeight:900}}>Frankfurt am Main</Text>
-        <Text style={{fontWeight:600,paddingVertical:7}}>Frankfurt, a central German city on the river Main, is a major financial hub that's home to the European Central Bank.</Text>
-        <Text style={{fontWeight:900,fontSize:20,color:"skyblue"}}>$24552</Text>
-      </View>
-    </View>
-  )
-}
-
 
 export default Dashboard;
-
-
-
-
-// src problem
-// touchable opacity
-// style use 
