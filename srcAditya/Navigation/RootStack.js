@@ -1,7 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Routes} from './ROUTES'; // Assuming Routes.LOGIN is a string
-import Login from '../Screens/Login';
+import { Routes } from './ROUTES'; // Assuming Routes.LOGIN is a string
+import Login from '../screens/Login';
 import Dashboard from '../Screens/Dashboard';
 import DashboardDetails from '../Screens/dashboardetails';
 

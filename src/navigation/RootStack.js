@@ -1,7 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Dashboard, Login, Shisham} from '../screens';
-import DashboardNavigator from './DashboardNavigtor';
 import {ROUTES} from './routes';
 import TodoApp from '../screens/TodoApp';
 import WeatherApp from '../screens/WeatherApp/WeatherApp';
