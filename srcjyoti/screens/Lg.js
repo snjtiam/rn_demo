@@ -10,7 +10,7 @@ const Login = () => {
     const [name, setName] = useState('jyoti');
 
   const onPressLogin=()=>{
-    navigation.navigate(ROUTES.DASHBOARD, {firstName: name});
+    navigation.navigate(ROUTES.TAB, {firstName: name});
   };
 
   const onPressWeatherApp=()=>{

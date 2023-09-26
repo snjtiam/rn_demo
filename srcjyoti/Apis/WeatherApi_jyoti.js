@@ -19,35 +19,39 @@ class WeatherApis_jyoti{
 
   }
   //2nd class--------------------------------------------------
-
   async TopCityListThen ({count}){
-    
-       fetch(
-        `${BASE_URL}locations/v1/topcities/${count}?apikey=${WEATHER_API_KEY}`,{ method : 'GET'},
-        )
-          .then( response=> response.json())
-          .then(response=>{
-              console.log('CORRECT',  response);
-              console.log('THIS IS RESPONSE-----------------------------------', response.length);
-            })
-            .catch(err=>{
-              console.log('fault',err)
-            })
-      
+    fetch(
+       `${BASE_URL}locations/v1/topcities/${count}?apikey=${WEATHER_API_KEY}`,{ method : 'GET'},
+      )
+      .then( response=> response.json())
+      .then(response=>{
+          console.log('CORRECT',  response);
+          console.log('THIS IS RESPONSE-----------------------------------', response.length);
           }
+        ).catch(err=>{
+            console.log('fault',err)
+          }
+      )
+    }
+    async TopLocationWeatherDetail(locationCode){
+      try{
+        const response = await fetch(
+          `${BASE_URL}forecasts/v1/daily/1day/${locationCode}?apikey=${WEATHER_API_KEY}`,);
+        
+          const data = await response.json();
+          return data;
+      }catch(error){
+          console.log('WRONG', error);
+        }
+  
+    }
   }
+
+
   
 
 export default new WeatherApis_jyoti();
 
 
-
-
-
-
-
-
-
-
-///async await
-// try and catch
+///async await -- try and catch
+///async fetch -- then and catch
