@@ -1,20 +1,9 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  ImageBackground,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity, ImageBackground, FlatList, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ReadMore from 'react-native-read-more-text';
 import {useNavigation} from '@react-navigation/native';
-import {
-  ImageList,
-  ImageListAdditional,
-} from '../../components/UI_components/DestinationComponent';
+import {ImageList, ImageListAdditional} from '../../components/UI_components/DestinationComponent';
 
 const DestnationDetail = ({route}) => {
   const [showAdditionalImages, setShowAdditionalImages] = useState(false);
@@ -53,9 +42,7 @@ const DestnationDetail = ({route}) => {
           overflow: 'hidden',
           alignSelf: 'center',
         }}>
-        <ImageBackground
-          style={{height: 350, width: 320, resizeMode: 'center'}}
-          source={imgUrl}></ImageBackground>
+        <ImageBackground style={{height: 350, width: 320, resizeMode: 'center'}} source={imgUrl}></ImageBackground>
       </View>
 
       <View style={{marginHorizontal: 20, marginTop: 10}}>
@@ -77,16 +64,8 @@ const DestnationDetail = ({route}) => {
         horizontal
         showsHorizontalScrollIndicator={false}
         data={showAdditionalImages ? images : images.slice(0, 3)}
-        renderItem={({item, index}) => <ImageList list={item.list} />}
-        ListFooterComponent={
-          showAdditionalImages ? null : (
-            <ImageListAdditional
-              list={images[3].list}
-              count={images.length}
-              onPress={onShowAllImages}
-            />
-          )
-        }
+        renderItem={({item}) => <ImageList list={item.list} />}
+        ListFooterComponent={showAdditionalImages ? null : <ImageListAdditional list={images[3].list} count={images.length} onPress={onShowAllImages} />}
       />
 
       <View
