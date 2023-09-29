@@ -24,7 +24,7 @@ const Header = () => {
         {/* border width problem in main view */}
 
         <View style={{flexDirection: 'row'}}>
-          <Image style={{height: 80, width: 80, borderRadius: 100, margin: 10}} source={require('../../assets/Person.jpg')} />
+          <Image style={{height: 80, width: 80, borderRadius: 100, margin: 10}} source={require('../../assets/images/Person.jpg')} />
           <View>
             <Text style={{fontSize: 25, marginTop: 20}}>
               Hello,<Text style={{fontWeight: 'bold'}}>Jyoti</Text>
@@ -32,7 +32,7 @@ const Header = () => {
             <Text style={{fontSize: 15, color: 'blue', fontWeight: '700'}}>SUNDAY, APR 9</Text>
           </View>
         </View>
-        <Image style={{height: 80, width: 80, borderRadius: 100, margin: 10}} source={require('../../assets/Person.jpg')} />
+        <Image style={{height: 80, width: 80, borderRadius: 100, margin: 10}} source={require('../../assets/images/Person.jpg')} />
 
         {/* <View style={{alignItems: 'center', marginVertical: 16}}> 
         <CircularProgress 

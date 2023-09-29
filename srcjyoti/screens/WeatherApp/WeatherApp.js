@@ -27,8 +27,8 @@ const WEATHER_APP = ({navigation}) => {
   };
 
   // useEffect(()=>{
-  // WeatherApi_jyoti.TopCityList({count:50});
-  // WeatherApi_jyoti.TopCityListThen({count:100});
+  // // WeatherApi_jyoti.TopCityList({count:50});
+  // WeatherApi_jyoti.GeolocationApi();
 
   // },[]);
 

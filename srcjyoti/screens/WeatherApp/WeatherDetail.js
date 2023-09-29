@@ -23,6 +23,10 @@ const WeatherDetail = ({ route }) => {
     getCitiesWeatherDetail();
   }, []);
 
+  useEffect(() => {
+    WeatherApi_jyoti.GeolocationApi();
+  }, []);
+
   if (citiesWeatherDetail === null) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

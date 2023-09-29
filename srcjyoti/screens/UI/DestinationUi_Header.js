@@ -24,7 +24,7 @@ const DestinationUi_Header = () => {
             flex: 1,
           }}>
           <View style={{flexDirection: 'row', flex: 1}}>
-            <Image style={{height: 45, width: 45, borderRadius: 100, margin: 8}} source={require('../../assets/Person2.jpg')} />
+            <Image style={{height: 45, width: 45, borderRadius: 100, margin: 8}} source={require('../../assets/images/Person2.jpg')} />
             <Text style={{fontSize: 20, marginTop: 20, color: '#111111'}}>
               Hi,
               <Text style={{fontWeight: 'bold', color: 'black'}}>Jyoti Gupta</Text>

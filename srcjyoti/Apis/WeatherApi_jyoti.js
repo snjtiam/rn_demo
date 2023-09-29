@@ -1,6 +1,9 @@
 const {BASE_URL, WEATHER_API_KEY} = require('../components/Constant_Api_Link');
+import Geolocation from '@react-native-community/geolocation';
+
 
 class WeatherApis_jyoti {
+
   // 1st class-------------------------------------------------
   async TopCityList({count}) {
     try {
@@ -50,7 +53,25 @@ class WeatherApis_jyoti {
       console.log('WRONG', error);
     }
   }
-}
+  
+//**************************************************************************
+
+  async GeolocationApi(locationCode) {
+    try {
+      const encodeCoordinates=encodeURI('28.11,84.09') //${latitude},${longitude}
+      const response = await fetch(
+        `${BASE_URL}locations/v1/cities/geoposition/${locationCode}?apikey=${WEATHER_API_KEY}&q=${encodeCoordinates}`,
+      );
+      console.warn('GEO-LOCATION',response);
+      return response;
+
+    } catch (error) {
+      console.log('WRONG', error);
+    }
+  }
+
+ }
+
 
 export default new WeatherApis_jyoti();
 

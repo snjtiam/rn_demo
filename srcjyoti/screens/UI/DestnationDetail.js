@@ -112,28 +112,28 @@ const styles = StyleSheet.create({
 
 export const images = [
   {
-    list: require('../../assets/Ktm.jpg'),
+    list: require('../../assets/images/Ktm.jpg'),
   },
   {
-    list: require('../../assets/Pokhara.jpg'),
+    list: require('../../assets/images/Pokhara.jpg'),
   },
   {
-    list: require('../../assets/Mt.everest.jpg'),
+    list: require('../../assets/images/Mt.everest.jpg'),
   },
   {
-    list: require('../../assets/Nagarkot.jpg'),
+    list: require('../../assets/images/Nagarkot.jpg'),
   },
   {
-    list: require('../../assets/Tilicho.png'),
+    list: require('../../assets/images/Tilicho.png'),
   },
   {
-    list: require('../../assets/Bhaktapur.jpg'),
+    list: require('../../assets/images/Bhaktapur.jpg'),
   },
   {
-    list: require('../../assets/PhoksundoLake.jpg'),
+    list: require('../../assets/images/PhoksundoLake.jpg'),
   },
   {
-    list: require('../../assets/Nagarkot.jpg'),
+    list: require('../../assets/images/Nagarkot.jpg'),
   },
 ];
 export default DestnationDetail;
