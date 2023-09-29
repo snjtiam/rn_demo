@@ -1,17 +1,15 @@
-import { View, Text, ActivityIndicator } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import {View, Text, ActivityIndicator} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import WeatherApi_jyoti from '../../Apis/WeatherApi_jyoti';
 
-const WeatherDetail = ({ route }) => {
+const WeatherDetail = ({route}) => {
   const [citiesWeatherDetail, setCitiesWeatherDetail] = useState(null);
 
   const data = route?.params;
 
   const getCitiesWeatherDetail = async () => {
     try {
-      const response = await WeatherApi_jyoti.TopLocationWeatherDetail(
-        data.cityCode
-      );
+      const response = await WeatherApi_jyoti.TopLocationWeatherDetail(data.cityCode);
       setCitiesWeatherDetail(response);
     } catch (error) {
       console.log('============================', error);
@@ -24,12 +22,12 @@ const WeatherDetail = ({ route }) => {
   }, []);
 
   useEffect(() => {
-    WeatherApi_jyoti.GeolocationApi();
+    getGPSLocation();
   }, []);
 
   if (citiesWeatherDetail === null) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <ActivityIndicator size="large" color={'blue'} />
       </View>
     );
@@ -47,17 +45,11 @@ const WeatherDetail = ({ route }) => {
         }}>
         WeatherDetail
       </Text>
-      <Text style={{ color: '#000', fontSize: 20 }}>{data?.cityCode}</Text>
+      <Text style={{color: '#000', fontSize: 20}}>{data?.cityCode}</Text>
 
       <Text>{citiesWeatherDetail?.Headline?.Text}</Text>
-      <Text>
-        {'Min temperature: ' +
-          citiesWeatherDetail?.DailyForecasts[0]?.Temperature?.Minimum?.Value}
-      </Text>
-      <Text>
-        {'Max temperature: ' +
-          citiesWeatherDetail?.DailyForecasts[0]?.Temperature?.Maximum?.Value}
-      </Text>
+      <Text>{'Min temperature: ' + citiesWeatherDetail?.DailyForecasts[0]?.Temperature?.Minimum?.Value}</Text>
+      <Text>{'Max temperature: ' + citiesWeatherDetail?.DailyForecasts[0]?.Temperature?.Maximum?.Value}</Text>
     </View>
   );
 };

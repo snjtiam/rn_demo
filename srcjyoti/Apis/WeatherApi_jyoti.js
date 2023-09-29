@@ -1,23 +1,15 @@
 const {BASE_URL, WEATHER_API_KEY} = require('../components/Constant_Api_Link');
 import Geolocation from '@react-native-community/geolocation';
 
-
 class WeatherApis_jyoti {
-
   // 1st class-------------------------------------------------
   async TopCityList({count}) {
     try {
-      const response = await fetch(
-        `${BASE_URL}locations/v1/topcities/${count}?apikey=${WEATHER_API_KEY}`,
-        {method: 'GET'},
-      );
+      const response = await fetch(`${BASE_URL}locations/v1/topcities/${count}?apikey=${WEATHER_API_KEY}`, {method: 'GET'});
 
       const data = await response.json();
       console.log('CORRECT', data);
-      console.log(
-        'THIS IS RESPONSE------------------------------->',
-        data.length,
-      );
+      console.log('THIS IS RESPONSE------------------------------->', data.length);
       return data;
     } catch (error) {
       console.log('WRONG', error);
@@ -25,17 +17,11 @@ class WeatherApis_jyoti {
   }
   //2nd class--------------------------------------------------
   async TopCityListThen({count}) {
-    fetch(
-      `${BASE_URL}locations/v1/topcities/${count}?apikey=${WEATHER_API_KEY}`,
-      {method: 'GET'},
-    )
+    fetch(`${BASE_URL}locations/v1/topcities/${count}?apikey=${WEATHER_API_KEY}`, {method: 'GET'})
       .then(response => response.json())
       .then(response => {
         console.log('CORRECT', response);
-        console.log(
-          'THIS IS RESPONSE-----------------------------------',
-          response.length,
-        );
+        console.log('THIS IS RESPONSE-----------------------------------', response.length);
       })
       .catch(err => {
         console.log('fault', err);
@@ -43,9 +29,7 @@ class WeatherApis_jyoti {
   }
   async TopLocationWeatherDetail(locationCode) {
     try {
-      const response = await fetch(
-        `${BASE_URL}forecasts/v1/daily/1day/${locationCode}?apikey=${WEATHER_API_KEY}`,
-      );
+      const response = await fetch(`${BASE_URL}forecasts/v1/daily/1day/${locationCode}?apikey=${WEATHER_API_KEY}`);
 
       const data = await response.json();
       return data;
@@ -53,25 +37,20 @@ class WeatherApis_jyoti {
       console.log('WRONG', error);
     }
   }
-  
-//**************************************************************************
 
-  async GeolocationApi(locationCode) {
+  //**************************************************************************
+
+  async getGPSWeather({lat, lon}) {
     try {
-      const encodeCoordinates=encodeURI('28.11,84.09') //${latitude},${longitude}
-      const response = await fetch(
-        `${BASE_URL}locations/v1/cities/geoposition/${locationCode}?apikey=${WEATHER_API_KEY}&q=${encodeCoordinates}`,
-      );
-      console.warn('GEO-LOCATION',response);
-      return response;
+      const encodeCoordinates = encodeURI(`${lat},${lon}`); //${latitude},${longitude}
+      const response = await fetch(`${BASE_URL}locations/v1/cities/geoposition/search?apikey=${WEATHER_API_KEY}&q=${encodeCoordinates}`);
 
+      return response.json();
     } catch (error) {
       console.log('WRONG', error);
     }
   }
-
- }
-
+}
 
 export default new WeatherApis_jyoti();
 
