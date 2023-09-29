@@ -2,6 +2,7 @@ import {View, Text, Image, FlatList, TextInput} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Dashboardcomp} from '../components/UI/dashboardcomp';
+import {SectionTitle} from '../components/UI/dashboardcomp';
 import {PopularPlace} from '../components/UI/dashboardcomp';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../Navigation/ROUTES';
@@ -11,22 +12,22 @@ const Dashboard = () => {
     {
       imgurl: require('../Assets/Ger3.jpeg'),
       country: 'Germany,Berlin',
-      city: 'Berlin,Brandenburg Gate',
+      city: 'Brandenburg Gate',
     },
     {
       imgurl: require('../Assets/Ger2.jpeg'),
       country: 'Germany,Berlin',
-      city: 'Berlin,Brandenburg Gate',
+      city: 'Brandenburg Gate',
     },
     {
       imgurl: require('../Assets/Ger1.jpeg'),
       country: 'Germany,Berlin',
-      city: 'Berlin,Brandenburg Gate',
+      city: 'Brandenburg Gate',
     },
     {
       imgurl: require('../Assets/Ger4.jpeg'),
       country: 'Germany,Berlin',
-      city: 'Berlin,Brandenburg Gate',
+      city: 'Brandenburg Gate',
     },
   ];
   const raj = useNavigation();
@@ -37,10 +38,7 @@ const Dashboard = () => {
     <View style={{flex: 1}}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <View style={{flexDirection: 'row'}}>
-          <Image
-            style={{borderRadius: 100, height: 50, width: 50, marginTop: 10}}
-            source={require('../Assets/profile.jpeg')}
-          />
+          <Image style={{borderRadius: 100, height: 50, width: 50, marginTop: 10}} source={require('../Assets/profile.jpeg')} />
           <Text
             style={{
               fontSize: 20,
@@ -66,6 +64,8 @@ const Dashboard = () => {
         }}
       />
 
+      <SectionTitle title={'Special for you'} />
+
       <View>
         <FlatList
           horizontal
@@ -82,6 +82,7 @@ const Dashboard = () => {
           )}
         />
       </View>
+      <SectionTitle title={'Popular Place'} />
       <PopularPlace />
     </View>
   );
