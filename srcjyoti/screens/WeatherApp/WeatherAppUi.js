@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 import React from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Fontisto from 'react-native-vector-icons/Fontisto';
@@ -12,15 +12,13 @@ const WeatherAppUi = () => {
   const [location, setLocation] = React.useState(null);
 
   const getGPSLocation = async () => {
-    Geolocation.getCurrentPosition(info => {
-      setLocation(info);
-    });
+    Geolocation.getCurrentPosition(info => {setLocation(info)});
   };
 
   const getGPSWeather = async () => {
     try {
-      const {latitude, longitude} = location.coords;
-      const response = await WeatherApi_jyoti.getGPSWeather({lat: latitude, lon: longitude});
+      const {latitude, longitude, timestamp} = location.coords;
+      const response = await WeatherApi_jyoti.getGPSWeather({lat: latitude, lon: longitude, timestamp}); 
 
       console.log('RESPONSE', response);
     } catch (error) {}
@@ -35,6 +33,43 @@ const WeatherAppUi = () => {
   React.useEffect(() => {
     getGPSLocation();
   }, []);
+
+
+  // const [LocData, setLocData] = React.useState([]);
+
+  // const getLocData = async () => {
+
+  //   try {
+      
+  //     const locationData = await WeatherApi_jyoti.getGPSWeather('37.386', ' -122.084').geocodingData;
+  //     setLocData(locationData);
+  //   } catch (error) {
+  //     console.log('============================', error);
+  //   }
+  // };
+
+  // React.useEffect(() => {
+  //   getLocData();
+  // }, []);
+
+
+
+  // const [weatherData, setWeatherData] = React.useState([]);
+
+  // const fetchData = async () => {
+  //   try {
+  //     const data = await WeatherApi_jyoti.getDetailedLWeatherInfo();
+  //     setWeatherData(data);
+  //   } catch (error) {
+  //     console.error('Error fetching weather data:', error);
+  //   }
+  // };
+
+  // React.useEffect(() => {
+  //   fetchData();
+  // }, [])
+
+  
   return (
     <View style={{flex: 1, backgroundColor: '#fff1'}}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between', marginVertical: 20, marginHorizontal: 25}}>
@@ -66,6 +101,26 @@ const WeatherAppUi = () => {
           17 <FontAwesome name="circle-o" size={30} style={{fontWeight: 'bold', justifyContent: 'flex-start'}} />
         </Text>
       </View>
+
+      {/* <FlatList
+        data={weatherData}
+        renderItem={({ item }) => (
+          <View>
+            <Text>{item.TimeZone}</Text>
+          </View>
+        )}
+      /> */}
+      
+      {/* <FlatList
+        style={{marginBottom: 40}}
+        data={LocData}
+        renderItem={({item}) => (
+          <Text style={{color: '#000', fontSize: 20}}>
+            {item.LocalizedName}
+          </Text>
+        )}
+      /> */}
+
     </View>
   );
 };

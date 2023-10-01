@@ -1,5 +1,6 @@
 const {BASE_URL, WEATHER_API_KEY} = require('../components/Constant_Api_Link');
-import Geolocation from '@react-native-community/geolocation';
+import {useEffect, useState} from 'react';
+
 
 class WeatherApis_jyoti {
   // 1st class-------------------------------------------------
@@ -30,9 +31,10 @@ class WeatherApis_jyoti {
   async TopLocationWeatherDetail(locationCode) {
     try {
       const response = await fetch(`${BASE_URL}forecasts/v1/daily/1day/${locationCode}?apikey=${WEATHER_API_KEY}`);
-
+      
       const data = await response.json();
       return data;
+
     } catch (error) {
       console.log('WRONG', error);
     }
@@ -43,13 +45,64 @@ class WeatherApis_jyoti {
   async getGPSWeather({lat, lon}) {
     try {
       const encodeCoordinates = encodeURI(`${lat},${lon}`); //${latitude},${longitude}
-      const response = await fetch(`${BASE_URL}locations/v1/cities/geoposition/search?apikey=${WEATHER_API_KEY}&q=${encodeCoordinates}`);
+      const response = await fetch(`${BASE_URL}locations/v1/cities/geoposition/search?apikey=${WEATHER_API_KEY}&q=${encodeCoordinates}`);   
+      
+      const geocodingData = await response.json();
 
-      return response.json();
+      const formattedAddress = 
+      console.log('Altogether geocodingData:  ',geocodingData)
+      geocodingData.LocalizedName + ', ' +
+      geocodingData.AdministrativeArea.LocalizedName + ', ' +
+      geocodingData.Country.EnglishName + ', '+
+      geocodingData.TimeZone.NextOffsetChange
+      
+
+      // const getDetailedLWeatherInfo= async ({local,AdministrativeArea, county}) =>{
+        
+      //   try{
+          
+          
+      //     return formattedAddress;
+  
+  
+      //   }
+      // };
+
+
+      // await getDetailedLWeatherInfo({
+      //   local:geocodingData.LocalizedName + ', ',
+      //   AdministrativeArea: geocodingData.AdministrativeArea.LocalizedName + ', ',
+      //   county:geocodingData.Country.EnglishName
+
+      // })
+
+            return formattedAddress;
+
+
+      // const[LocData, setLocData]=useState([]);
+
+      // const getDetailedLWeatherInfo = async () => {
+
+      //  try{
+      //   const locationData = await this.getGPSWeather(Data.LocalizeName);
+      //   setLocData(locationData);
+        
+      //  }
+      //  catch(error){
+      //   console.log('WRONG', error);
+
+      //  }
+      // };
+      // useEffect(() => {
+      //   getDetailedLWeatherInfo();
+      // }, []);
+
+      
     } catch (error) {
       console.log('WRONG', error);
     }
   }
+
 }
 
 export default new WeatherApis_jyoti();

@@ -21,9 +21,9 @@ const WeatherDetail = ({route}) => {
     getCitiesWeatherDetail();
   }, []);
 
-  useEffect(() => {
-    getGPSLocation();
-  }, []);
+  // useEffect(() => {
+  //   getGPSLocation();
+  // }, []);
 
   if (citiesWeatherDetail === null) {
     return (
