@@ -10,19 +10,27 @@ import WeatherApi_jyoti from '../../Apis/WeatherApi_jyoti';
 
 const WeatherAppUi = () => {
   const [location, setLocation] = React.useState(null);
+  const [currentCondition, setCurrentCondition] = React.useState(null);
 
   const getGPSLocation = async () => {
-    Geolocation.getCurrentPosition(info => {setLocation(info)});
+    Geolocation.getCurrentPosition(info => {
+      setLocation(info);
+    });
   };
 
   const getGPSWeather = async () => {
     try {
       const {latitude, longitude, timestamp} = location.coords;
-      const response = await WeatherApi_jyoti.getGPSWeather({lat: latitude, lon: longitude, timestamp}); 
+      const response = await WeatherApi_jyoti.getGPSWeather({lat: latitude, lon: longitude, timestamp});
 
-      console.log('RESPONSE', response);
+      const weatherResponse = await WeatherApi_jyoti.getCurrentWeather(response.Key);
+      setCurrentCondition(weatherResponse);
+      // console.log('RESPONSE', response, '----', JSON.stringify(weatherResponse));
     } catch (error) {}
   };
+
+  const temperature = currentCondition ? currentCondition[0]?.Temperature?.Metric?.Value ?? '--' : '--';
+  const condition = currentCondition ? currentCondition[0]?.WeatherText ?? '--' : '--';
 
   React.useEffect(() => {
     if (location !== null) {
@@ -34,42 +42,8 @@ const WeatherAppUi = () => {
     getGPSLocation();
   }, []);
 
+  // DateFNS.format(new Date('2023-10-04T08:43:00-07:00'), 'CCCC - MMM');
 
-  // const [LocData, setLocData] = React.useState([]);
-
-  // const getLocData = async () => {
-
-  //   try {
-      
-  //     const locationData = await WeatherApi_jyoti.getGPSWeather('37.386', ' -122.084').geocodingData;
-  //     setLocData(locationData);
-  //   } catch (error) {
-  //     console.log('============================', error);
-  //   }
-  // };
-
-  // React.useEffect(() => {
-  //   getLocData();
-  // }, []);
-
-
-
-  // const [weatherData, setWeatherData] = React.useState([]);
-
-  // const fetchData = async () => {
-  //   try {
-  //     const data = await WeatherApi_jyoti.getDetailedLWeatherInfo();
-  //     setWeatherData(data);
-  //   } catch (error) {
-  //     console.error('Error fetching weather data:', error);
-  //   }
-  // };
-
-  // React.useEffect(() => {
-  //   fetchData();
-  // }, [])
-
-  
   return (
     <View style={{flex: 1, backgroundColor: '#fff1'}}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between', marginVertical: 20, marginHorizontal: 25}}>
@@ -97,9 +71,11 @@ const WeatherAppUi = () => {
         <Text style={{fontSize: 25, color: 'black', fontWeight: '500', marginHorizontal: 25, marginTop: -4}}>
           Saturday <Fontisto name="minus-a" /> 10 Feb
         </Text>
-        <Text style={{fontSize: 165, color: 'black', fontWeight: 'bold', marginLeft: 25}}>
-          17 <FontAwesome name="circle-o" size={30} style={{fontWeight: 'bold', justifyContent: 'flex-start'}} />
-        </Text>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={{fontSize: 140, color: 'black', fontWeight: 'bold', marginLeft: 25}}>{temperature}</Text>
+          <FontAwesome name="circle-o" size={60} style={{fontWeight: 'bold', justifyContent: 'flex-start', alignSelf: 'flex-start'}} />
+        </View>
+        <Text style={{fontSize: 40, color: 'black', fontWeight: 'bold', marginLeft: 25}}>{condition}</Text>
       </View>
 
       {/* <FlatList
@@ -110,7 +86,7 @@ const WeatherAppUi = () => {
           </View>
         )}
       /> */}
-      
+
       {/* <FlatList
         style={{marginBottom: 40}}
         data={LocData}
@@ -120,7 +96,6 @@ const WeatherAppUi = () => {
           </Text>
         )}
       /> */}
-
     </View>
   );
 };

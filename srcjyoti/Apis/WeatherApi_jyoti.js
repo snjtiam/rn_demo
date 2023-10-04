@@ -1,7 +1,6 @@
 const {BASE_URL, WEATHER_API_KEY} = require('../components/Constant_Api_Link');
 import {useEffect, useState} from 'react';
 
-
 class WeatherApis_jyoti {
   // 1st class-------------------------------------------------
   async TopCityList({count}) {
@@ -31,12 +30,21 @@ class WeatherApis_jyoti {
   async TopLocationWeatherDetail(locationCode) {
     try {
       const response = await fetch(`${BASE_URL}forecasts/v1/daily/1day/${locationCode}?apikey=${WEATHER_API_KEY}`);
-      
+
       const data = await response.json();
       return data;
-
     } catch (error) {
       console.log('WRONG', error);
+    }
+  }
+
+  async getCurrentWeather(locationKey) {
+    try {
+      const response = await fetch(`${BASE_URL}currentconditions/v1/${locationKey}?apikey=${WEATHER_API_KEY}`);
+
+      return response.json();
+    } catch (error) {
+      console.log('ERRR', error);
     }
   }
 
@@ -45,64 +53,19 @@ class WeatherApis_jyoti {
   async getGPSWeather({lat, lon}) {
     try {
       const encodeCoordinates = encodeURI(`${lat},${lon}`); //${latitude},${longitude}
-      const response = await fetch(`${BASE_URL}locations/v1/cities/geoposition/search?apikey=${WEATHER_API_KEY}&q=${encodeCoordinates}`);   
-      
+      const response = await fetch(`${BASE_URL}locations/v1/cities/geoposition/search?apikey=${WEATHER_API_KEY}&q=${encodeCoordinates}`);
       const geocodingData = await response.json();
-
-      const formattedAddress = 
-      console.log('Altogether geocodingData:  ',geocodingData)
-      geocodingData.LocalizedName + ', ' +
-      geocodingData.AdministrativeArea.LocalizedName + ', ' +
-      geocodingData.Country.EnglishName + ', '+
-      geocodingData.TimeZone.NextOffsetChange
-      
-
-      // const getDetailedLWeatherInfo= async ({local,AdministrativeArea, county}) =>{
-        
-      //   try{
-          
-          
-      //     return formattedAddress;
-  
-  
-      //   }
-      // };
-
-
-      // await getDetailedLWeatherInfo({
-      //   local:geocodingData.LocalizedName + ', ',
-      //   AdministrativeArea: geocodingData.AdministrativeArea.LocalizedName + ', ',
-      //   county:geocodingData.Country.EnglishName
-
-      // })
-
-            return formattedAddress;
-
-
-      // const[LocData, setLocData]=useState([]);
-
-      // const getDetailedLWeatherInfo = async () => {
-
-      //  try{
-      //   const locationData = await this.getGPSWeather(Data.LocalizeName);
-      //   setLocData(locationData);
-        
-      //  }
-      //  catch(error){
-      //   console.log('WRONG', error);
-
-      //  }
-      // };
-      // useEffect(() => {
-      //   getDetailedLWeatherInfo();
-      // }, []);
-
-      
+      return geocodingData;
     } catch (error) {
-      console.log('WRONG', error);
+      console.log('ERR', error);
     }
   }
 
+  getDetailedLWeatherInfo = async ({local, AdministrativeArea, county}) => {
+    try {
+      return null;
+    } catch (error) {}
+  };
 }
 
 export default new WeatherApis_jyoti();
