@@ -1,5 +1,4 @@
 const {BASE_URL, WEATHER_API_KEY} = require('../components/Constant_Api_Link');
-import {useEffect, useState} from 'react';
 
 class WeatherApis_jyoti {
   // 1st class-------------------------------------------------
@@ -47,6 +46,15 @@ class WeatherApis_jyoti {
       console.log('ERRR', error);
     }
   }
+  async getCurrentLocation(locationKey) {
+    try {
+      const response = await fetch(`${BASE_URL}locations/v1/${locationKey}?apikey=${WEATHER_API_KEY}`);
+
+      return response.json() ;
+    } catch (error) {
+      console.log('ERRR', error);
+    }
+  }
 
   //**************************************************************************
 
@@ -56,6 +64,7 @@ class WeatherApis_jyoti {
       const response = await fetch(`${BASE_URL}locations/v1/cities/geoposition/search?apikey=${WEATHER_API_KEY}&q=${encodeCoordinates}`);
       const geocodingData = await response.json();
       return geocodingData;
+      
     } catch (error) {
       console.log('ERR', error);
     }
