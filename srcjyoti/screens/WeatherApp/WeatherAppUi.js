@@ -37,7 +37,11 @@ const WeatherAppUi = () => {
   const condition = currentCondition ? currentCondition[0]?.WeatherText ?? '--' : '--';
   const countrytitle = currentLocation ? currentLocation?.EnglishName ?? '--' : '--';
   const locationDate = currentCondition ? currentCondition[0]?.LocalObservationDateTime ?? new Date() : new Date();
+  // const locationTime = currentCondition
   const date = format(new Date(locationDate), 'EEEE - dd MMM');
+  const time = format(new Date(locationDate), 'hh : mm')
+
+  console.log('TIME===', JSON.stringify(currentCondition));
 
   React.useEffect(() => {
     if (location !== null) {
@@ -58,7 +62,7 @@ const WeatherAppUi = () => {
         <Entypo name="menu" size={22} color="black" style={{alignSelf: 'center'}} />
         <View>
           <Text style={{fontSize: 17, color: 'black', fontWeight: '800'}}>{countrytitle}</Text>
-          <Text style={{fontSize: 13, color: 'black', fontWeight: '400', textAlign: 'center'}}>Today, 08:16</Text>
+          <Text style={{fontSize: 13, color: 'black', fontWeight: '400', textAlign: 'center'}}>Today, {time}</Text>
         </View>
         <Entypo name="plus" size={22} color="black" style={{alignSelf: 'center'}} />
       </View>
@@ -68,7 +72,7 @@ const WeatherAppUi = () => {
           <View>
             <View style={{flexDirection: 'row'}}>
               <MaterialCommunityIcons name="globe-model" size={25} color="black" style={{marginRight: 5, marginLeft: -5}} />
-              <Text style={{fontSize: 15, color: 'black', fontWeight: 'bold', textAlign: 'center'}}>Los Angeles</Text>
+              <Text style={{fontSize: 15, color: 'black', fontWeight: 'bold', textAlign: 'center'}}>{countrytitle}</Text>
             </View>
           </View>
           <View style={{flexDirection: 'row'}}>
@@ -79,7 +83,6 @@ const WeatherAppUi = () => {
         <Text style={{fontSize: 25, color: 'black', fontWeight: '500', marginHorizontal: 25, marginTop: -4}}>{date}</Text>
         <View style={{flexDirection: 'row'}}>
           <Text style={{fontSize: 140, color: 'black', fontWeight: 'bold', marginLeft: 25}}>{temperature + '\u00b0'}</Text>
-          {/* <FontAwesome name="circle-o" size={60} style={{fontWeight: 'bold', justifyContent: 'flex-start', alignSelf: 'flex-start'}} /> */}
         </View>
         <Text style={{fontSize: 40, color: 'black', fontWeight: 'bold', marginLeft: 25}}>{condition}</Text>
       </View>
