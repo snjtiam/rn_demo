@@ -1,20 +1,24 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer'
+
 import Login from './Login';
 const WeatherUI = () => {
-    const Drawer = createDrawerNavigator();
+    
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName='Login'>
-        <Drawer.Screen name='login' component={Login}/>
-      </Drawer.Navigator>
-      </NavigationContainer>
+    <View style={styles.container}>
+        <Text>Hello</Text>
+      </View>
    
   )
 }
 
 export default WeatherUI
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container:{
+    height:650,
+    width:412,
+    borderRadius:40,
+    backgroundColor:'#fff',
+    marginLeft:1
+  }})
