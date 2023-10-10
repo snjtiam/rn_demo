@@ -7,7 +7,7 @@ const Header = () => {
   return (
     
     <View style={styles.container}>
-        <Ionicons name='menu-outline' style={styles.menu}/>
+        <Ionicons name='menu-outline' style={styles.menu} />
     <View ><Text style={styles.Text1}>Los angelos ,USA</Text></View>
     <Text style={styles.Text2}>Today 06:36</Text>
     <Icon name='plus' 
