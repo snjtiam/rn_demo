@@ -9,6 +9,7 @@ const ROUTES = {
   WEATHER_DETAIL: 'WEATHER_DETAIL',
   WEATHERAPP_UI: 'WEATHERAPP_UI',
   WEATHER_TAB: 'WEATHER_TAB',
+  WeatherUi_Detail: 'WeatherUi_Detail'
 };
 
 export {ROUTES};

@@ -7,7 +7,7 @@ import {Weather_Tab} from './TabNavigator';
 import WeatherDetail from '../screens/WeatherApp/WeatherDetail';
 import DestinationUi_Header from '../screens/UI/DestinationUi_Header';
 import DestnationDetail from '../screens/UI/DestnationDetail';
-navigator.geolocation = require('@react-native-community/geolocation');
+import { WeatherUi_Detail } from '../screens/WeatherApp/WeatherUi_Detail';
 
 const RootStack = () => {
   const Stack = createNativeStackNavigator();
@@ -20,6 +20,7 @@ const RootStack = () => {
         <Stack.Screen name={ROUTES.DESTINATION_DETAIL} component={DestnationDetail} />
         <Stack.Screen name={ROUTES.WEATHER_TAB} component={Weather_Tab} />
         <Stack.Screen name={ROUTES.WEATHER_DETAIL} component={WeatherDetail} />
+        <Stack.Screen name={ROUTES.WeatherUi_Detail} component={WeatherUi_Detail} />
       </Stack.Navigator>
     </NavigationContainer>
   );

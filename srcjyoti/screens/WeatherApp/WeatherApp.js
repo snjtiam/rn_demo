@@ -9,7 +9,7 @@ const WEATHER_APP = ({navigation}) => {
   const getCities = async () => {
     try {
       const data = await WeatherApi_jyoti.TopCityList({count: 100});
-      setCities(data);
+      setCities(data.slice(0, 4));
     } catch (error) {
       console.log('============================', error);
     }
