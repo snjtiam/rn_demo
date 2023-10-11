@@ -39,7 +39,7 @@ class WeatherApis_jyoti {
 
   async getCurrentWeather(locationKey) {
     try {
-      const response = await fetch(`${BASE_URL}currentconditions/v1/${locationKey}?apikey=${WEATHER_API_KEY}`);
+      const response = await fetch(`${BASE_URL}currentconditions/v1/${locationKey}?apikey=${WEATHER_API_KEY}&details=true`);
 
       return response.json();
     } catch (error) {
@@ -50,7 +50,7 @@ class WeatherApis_jyoti {
     try {
       const response = await fetch(`${BASE_URL}locations/v1/${locationKey}?apikey=${WEATHER_API_KEY}`);
 
-      return response.json() ;
+      return response.json();
     } catch (error) {
       console.log('ERRR', error);
     }
@@ -60,7 +60,7 @@ class WeatherApis_jyoti {
     try {
       const response = await fetch(`${BASE_URL}currentconditions/v1/topcities/${num}?apikey=${WEATHER_API_KEY}`, {method: 'GET'});
 
-      return response.json() ;
+      return response.json();
     } catch (error) {
       console.log('ERRR', error);
     }
@@ -74,7 +74,6 @@ class WeatherApis_jyoti {
       const response = await fetch(`${BASE_URL}locations/v1/cities/geoposition/search?apikey=${WEATHER_API_KEY}&q=${encodeCoordinates}`);
       const geocodingData = await response.json();
       return geocodingData;
-      
     } catch (error) {
       console.log('ERR', error);
     }
