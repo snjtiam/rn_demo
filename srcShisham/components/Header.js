@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     },
     menu:{
         fontSize:30,
-        top:38
+        top:38,
+        marginLeft:25
     },
     Text1:{
         width:300,
