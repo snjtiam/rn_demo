@@ -4,6 +4,7 @@ import Geolocation from '@react-native-community/geolocation';
 import Login from './Login';
 import {format} from 'date-fns';
 import WeatherApis from '../Apis/WeatherApis';
+import MatCom from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const WeatherUI = () => {
   const [location, setLocation] = React.useState(null);
@@ -31,7 +32,6 @@ const WeatherUI = () => {
   const condition = currentCondition ? currentCondition[0]?.WeatherText ?? '--' : '--';
   const countrytitle = currentLocation ? currentLocation?.EnglishName ?? '--' : '--';
   const locationDate = currentCondition ? currentCondition[0]?.LocalObservationDateTime ?? new Date() : new Date();
- 
   const date = format(new Date(locationDate), 'EEEE - dd MMM');
   const time = format(new Date(locationDate), 'hh : mm')
 
@@ -49,9 +49,13 @@ const WeatherUI = () => {
 
   return (
     <View style={styles.container}>
-        <Text style={{height:50,width:400,fontSize:30}}>{date}</Text>
-        <Text style={{height:50,width:400,fontSize:30}}>{time}</Text>
-        <Text style={{height:50,width:400,fontSize:30}}>{countrytitle}</Text>
+      <View>  
+        <Text style={styles.place}>{countrytitle}</Text>
+        <MatCom name='weather-cloudy'  backgroundColor style={styles.MatIcon}/><Text style={styles.weathercondition}>{condition}</Text>
+      </View>
+
+        <Text style={styles.date}>{date}</Text>
+        <Text style={styles.temperature}>{temperature}{'\u00b0'}</Text>
       </View>
    
   )
@@ -65,6 +69,46 @@ const styles = StyleSheet.create({
     width:412,
     borderRadius:40,
     backgroundColor:'#fff',
-    // flex:1,
+    top:-25,
     marginLeft:1
-  }})
+  },
+  place:{
+    height:50,
+    width:400,
+    fontSize:15,
+    top:37,
+    marginLeft:35,
+    color:'#000',
+    fontWeight:"bold"
+  },
+weathercondition:{
+  height:50,
+  width:400,
+  fontSize:15,
+  marginLeft:300,
+  top:-26,
+  color:'#000',
+  fontWeight:"bold"
+},
+MatIcon:{
+  fontSize:15,
+  marginLeft:273,
+  top:-9,
+  color:'#000',
+  fontWeight:"bold"
+},
+date:{
+  fontSize:25,
+  marginLeft:26,
+  top:-40,
+  color:'#000',
+  fontWeight:"bold"
+},
+temperature:{
+  fontSize:160,
+  marginLeft:20,
+  top:-60,
+  color:'#000',
+  fontWeight:'bold'
+}
+})

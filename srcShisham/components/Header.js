@@ -24,16 +24,16 @@ const styles = StyleSheet.create({
         height:300,
         width:420,
         color:'#000',
-        borderRadius:50,
+        borderRadius:30,
         backgroundColor: 'silver'
     },
     menu:{
         fontSize:30,
-        top:80
+        top:38
     },
     Text1:{
         width:300,
-        top:45,
+        top:5,
         marginLeft:90,
         paddingLeft:50,
         fontSize:15,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     Text2:{
         width:300,
-        top:45,
+        top:5,
         marginLeft:95,
         paddingLeft:50,
         fontSize:15,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         width:50,
         fontSize:30,
         marginLeft:350,
-        top:10,
+        top:-30,
         color:'#000'
 
     }
