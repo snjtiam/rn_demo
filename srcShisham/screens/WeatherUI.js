@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View ,Dimensions, Button } from 'react-native'
 import React from 'react'
 import Geolocation from '@react-native-community/geolocation';
 import Login from './Login';
@@ -6,7 +6,14 @@ import {format} from 'date-fns';
 import WeatherApis from '../Apis/WeatherApis';
 import MatCom from 'react-native-vector-icons/MaterialCommunityIcons'
 
+const windowHeight= Dimensions.get('window').height;
+const windowWidth= Dimensions.get('window').width;
+
 const WeatherUI = () => {
+  const FlatListSect=()=>{
+
+  }
+  
   const [location, setLocation] = React.useState(null);
   const [currentCondition, setCurrentCondition] = React.useState(null);
   const [currentLocation, setCurrentLocation] = React.useState(null);
@@ -47,6 +54,9 @@ const WeatherUI = () => {
     getLocation();
   }, []);
 
+  const dim=()=> {
+    console.log(windowHeight+''+windowWidth);
+  }
   return (
     <View style={styles.container}>
       <View>  
@@ -54,8 +64,10 @@ const WeatherUI = () => {
         <MatCom name='weather-cloudy'  backgroundColor style={styles.MatIcon}/><Text style={styles.weathercondition}>{condition}</Text>
       </View>
 
+        
         <Text style={styles.date}>{date}</Text>
         <Text style={styles.temperature}>{temperature}{'\u00b0'}</Text>
+        <Button title='Dimension' onPress={dim}/><FlatListSect/>
       </View>
    
   )
@@ -65,8 +77,9 @@ export default WeatherUI
 
 const styles = StyleSheet.create({
   container:{
-    height:650,
-    width:412,
+    // flex:1,
+    height:windowHeight,
+    width:windowWidth,
     borderRadius:40,
     backgroundColor:'#fff',
     top:-25,
@@ -105,7 +118,7 @@ date:{
   fontWeight:"bold"
 },
 temperature:{
-  fontSize:160,
+  fontSize:140,
   marginLeft:20,
   top:-60,
   color:'#000',

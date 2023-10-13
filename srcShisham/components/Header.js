@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View ,Dimensions } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -6,6 +6,9 @@ import WeatherUI from '../screens/WeatherUI'
 import {format} from 'date-fns';
 import WeatherApis from '../Apis/WeatherApis';
 import Geolocation from '@react-native-community/geolocation'
+
+const windowHeight= Dimensions.get('window').height;
+const windowWidth= Dimensions.get('window').width;
 const Header = () => {
     const [location, setLocation] = React.useState(null);
     const [currentCondition, setCurrentCondition] = React.useState(null);
@@ -46,7 +49,7 @@ const Header = () => {
     <View style={styles.container}>
         <Ionicons name='menu-outline' style={styles.menu} />
     <View ><Text style={styles.Text1}>{countrytitle}</Text></View>
-    <Text style={styles.Text2}>Today 06:36</Text>
+    <Text style={styles.Text2}>Today {time}</Text>
     <Icon name='plus' 
     style={styles.icon} />
     <WeatherUI/>
@@ -58,8 +61,9 @@ export default Header
 
 const styles = StyleSheet.create({
     container:{
-        height:300,
-        width:420,
+      // flex:1.5,
+        height:windowHeight/3,
+        width:windowWidth,
         color:'#000',
         borderRadius:30,
         backgroundColor: 'silver'
