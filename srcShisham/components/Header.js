@@ -34,7 +34,7 @@ const Header = () => {
     const countrytitle = currentLocation ? currentLocation?.EnglishName ?? '--' : '--';
     const locationDate = currentCondition ? currentCondition[0]?.LocalObservationDateTime ?? new Date() : new Date();
     const time = format(new Date(locationDate), 'hh : mm')
-    console.log('Header:', JSON.stringify(currentCondition));
+    // console.log('Header:', JSON.stringify(currentCondition));
 
   React.useEffect(() => {
     if (location !== null) {

@@ -19,9 +19,9 @@ const WeatherUI = () => {
           <Text style={{ fontSize: 15 }}>{country}</Text>
           <Text style={{ fontSize: 15 }}>{time}</Text>
         </View>
-        <View>
+        <View style={{ flexDirection: 'row',justifyContent: 'space-between'}}>
           <Text style={{ fontSize: 35,color:'#000',fontWeight:'bold' }}>{capitalcity}</Text>
-          <Text style={{ fontSize: 30,color:'#000',fontWeight:'bold' }}>{temperature}</Text>
+          <Text style={{ fontSize: 30,color:'#000',fontWeight:'bold',top:5 }}>{temperature}{'\u00b0'}</Text>
         </View>
       </View>
     );
@@ -107,7 +107,7 @@ const WeatherUI = () => {
 
       await AsyncStorage.setItem('citydata', JSON.stringify(weatherResponseofcities));
     } catch (error) {
-      console.log('============================', error);
+      console.log('CHeck getcities', error);
     }
   };
 
@@ -154,7 +154,7 @@ const WeatherUI = () => {
       style={{fontSize:30,top:-40}} data={citiesCondition ?? []} renderItem={({ item }) => <FlatListSect country={item?.Country?.EnglishName} 
       capitalcity={item?.EnglishName}
       time={format(new Date(item ? item[0]?.LocalObservationDateTime ?? new Date() : new Date()), 'hh : mm')}
-      // temperature={item ? item[0]?.Temperature?.Metric?.Value ?? '--' : '--' }
+      temperature={item ? item?.Temperature?.Metric?.Value ?? '--' : '--' }
       
       />} />
     </View>
