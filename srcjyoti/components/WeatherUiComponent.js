@@ -43,17 +43,17 @@ const WeatherUiComponent = ({temperature, condition, countrytitle, date, time, o
 
 export {WeatherUiComponent};
 
-export const WeatherUicity_section = ({countryname, capitalcity, time}) => {
+export const WeatherUicity_section = ({countryname, capitalcity, time, temperature}) => {
   return (
     <View style={{borderTopWidth: 1, backgroundColor: '#fff', borderTopColor: 'lightgrey', paddingVertical: 12, paddingHorizontal: 40}}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <Text style={{fontSize: 15}}>{countryname}</Text>
-        <Text style={{fontSize: 15}}>{time}10:45 PM</Text>
+        <Text style={{fontSize: 15}}>{time}</Text>
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 3}}>
         <Text style={{fontSize: 27, fontWeight: 'bold', color: 'black'}}>{capitalcity}</Text>
         <Text style={{fontSize: 22, fontWeight: 500, color: 'black'}}>
-          18{'\u00b0'} <Fontisto name="cloudy" size={16} />
+          {temperature}{'\u00b0'} <Fontisto name="cloudy" size={16} />
         </Text>
       </View>
     </View>
