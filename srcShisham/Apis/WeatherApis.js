@@ -32,6 +32,16 @@ class WeatherApis {
       console.log('ERROR', error);
     }
   }
+  
+  async getCurrentConditionforTopcities({num}) {
+    try {
+      const response = await fetch(`${BASE_URL}currentconditions/v1/topcities/${num}?apikey=${WEATHER_API_KEY}`, {method: 'GET'});
+
+      return response.json();
+    } catch (error) {
+      console.log('ERRR', error);
+    }
+  }
 
   async getTopCitiesThen({count}) {
     const response = await fetch(

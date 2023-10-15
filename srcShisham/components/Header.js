@@ -61,8 +61,8 @@ export default Header
 
 const styles = StyleSheet.create({
     container:{
-      // flex:1.5,
-        height:windowHeight/3,
+      // flex:0.2,
+        height:110,
         width:windowWidth,
         color:'#000',
         borderRadius:30,
