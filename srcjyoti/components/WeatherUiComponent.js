@@ -1,11 +1,13 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
-const WeatherUiComponent = ({temperature, condition, countrytitle, date, time, onPress = () => {}}) => {
+const ICON_BASE_URL = `https://developer.accuweather.com/sites/default/files/`;
+const WeatherUiComponent = ({temperature, condition, countrytitle, date, time, onPress = () => {}, weatherIconNumber}) => {
+  const iconNumber = weatherIconNumber.toString().length === 1 ? `0${weatherIconNumber}` : weatherIconNumber;
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between', marginVertical: 20, marginHorizontal: 30}}>
@@ -24,7 +26,7 @@ const WeatherUiComponent = ({temperature, condition, countrytitle, date, time, o
             <Text style={{fontSize: 14, color: 'black', fontWeight: 'bold', textAlign: 'center'}}>{countrytitle}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Ionicons name="sunny-outline" size={25} color="black" style={{marginRight: 5}} />
+            <Image resizeMode="contain" style={{width: 50}} source={{uri: ICON_BASE_URL + `${iconNumber}-s.png`}} />
             <Text style={{fontSize: 15, color: 'black', fontWeight: 'bold', textAlign: 'center'}}>{condition} Day</Text>
           </View>
         </View>
@@ -43,7 +45,8 @@ const WeatherUiComponent = ({temperature, condition, countrytitle, date, time, o
 
 export {WeatherUiComponent};
 
-export const WeatherUicity_section = ({countryname, capitalcity, time, temperature}) => {
+export const WeatherUicity_section = ({countryname, capitalcity, time, temperature, weatherIconNumber}) => {
+  const iconNumber = weatherIconNumber.toString().length === 1 ? `0${weatherIconNumber}` : weatherIconNumber;
   return (
     <View style={{borderTopWidth: 1, backgroundColor: '#fff', borderTopColor: 'lightgrey', paddingVertical: 12, paddingHorizontal: 40}}>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -52,9 +55,13 @@ export const WeatherUicity_section = ({countryname, capitalcity, time, temperatu
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 3}}>
         <Text style={{fontSize: 27, fontWeight: 'bold', color: 'black'}}>{capitalcity}</Text>
-        <Text style={{fontSize: 22, fontWeight: 500, color: 'black'}}>
-          {temperature}{'\u00b0'} <Fontisto name="cloudy" size={16} />
-        </Text>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={{fontSize: 22, fontWeight: 500, color: 'black'}}>
+            {temperature}
+            {'\u00b0'}
+          </Text>
+          <Image resizeMode="contain" style={{width: 50}} source={{uri: ICON_BASE_URL + `${iconNumber}-s.png`}} />
+        </View>
       </View>
     </View>
   );

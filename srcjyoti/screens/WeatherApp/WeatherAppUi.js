@@ -8,7 +8,8 @@ import {WeatherUiComponent} from '../../components/WeatherUiComponent';
 import {WeatherUicity_section} from '../../components/WeatherUiComponent';
 import {useNavigation} from '@react-navigation/native';
 import {ROUTES} from '../../navigation/routes';
-import { it } from 'date-fns/locale';
+import {it} from 'date-fns/locale';
+import {Image} from 'react-native-svg';
 
 const WeatherAppUi = () => {
   const navigation = useNavigation();
@@ -85,6 +86,7 @@ const WeatherAppUi = () => {
   let countrytitle = currentLocation ? currentLocation?.EnglishName ?? '--' : '--';
   let date = format(new Date(locationDate), 'EEEE - dd MMM');
   let time = format(new Date(locationDate), 'hh : mm');
+  let weatherIconNumber = currentCondition ? currentCondition[0]?.WeatherIcon : 0;
 
   const getCities = async () => {
     try {
@@ -96,8 +98,6 @@ const WeatherAppUi = () => {
       console.log('============================', error);
     }
   };
-
-  // console.log('jjjjjjjjj', JSON.stringify(citiesCondition));
 
   React.useEffect(() => {
     loadDatafromcitydata = async () => {
@@ -134,22 +134,13 @@ const WeatherAppUi = () => {
         countrytitle={countrytitle}
         date={date}
         time={time}
+        weatherIconNumber={weatherIconNumber}
         onPress={() => {
           onPressScreen();
         }}
       />
 
-      <FlatList 
-      scrollEnabled={false} 
-      data={citiesCondition ?? []} 
-      renderItem={({item}) => 
-      <WeatherUicity_section 
-      countryname={item?.Country?.EnglishName} 
-      capitalcity={item?.EnglishName}
-      time={format(new Date(item ? item[0]?.LocalObservationDateTime ?? new Date() : new Date()), 'hh : mm')}
-      temperature={item ? item[0]?.Temperature?.Metric?.Value ?? '--' : '--'}
-      />}
-      />
+      <FlatList scrollEnabled={false} data={citiesCondition ?? []} renderItem={({item}) => <WeatherUicity_section countryname={item?.Country?.EnglishName} capitalcity={item?.EnglishName} time={format(new Date(item ? item?.LocalObservationDateTime ?? new Date() : new Date()), 'hh : mm')} temperature={item ? item?.Temperature?.Metric?.Value ?? '--' : '--'} weatherIconNumber={item?.WeatherIcon} />} />
     </ScrollView>
   );
 };
