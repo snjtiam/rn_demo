@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View, Dimensions, Button } from 'react-native'
+import { FlatList, StyleSheet, Text, View, Dimensions, Button, ScrollView } from 'react-native'
 import React from 'react'
 import Geolocation from '@react-native-community/geolocation';
 import Login from './Login';
@@ -12,12 +12,16 @@ const windowWidth = Dimensions.get('window').width;
 
 const WeatherUI = () => {
 
-  const FlatListSect = ({ country, capitalcity, time }) => {
+  const FlatListSect = ({ country, capitalcity, time,temperature }) => {
     return (
-      <View style={{ borderTopWidth: 1, backgroundColor: '#fff', borderTopColor: 'lightgrey', paddingVertical: 12, paddingHorizontal: 40 }}>
+      <View style={{ borderTopWidth: 1, borderTopColor: '#948885', paddingVertical: 18, paddingHorizontal: 40 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={{ fontSize: 15 }}>{country}</Text>
           <Text style={{ fontSize: 15 }}>{time}</Text>
+        </View>
+        <View>
+          <Text style={{ fontSize: 35,color:'#000',fontWeight:'bold' }}>{capitalcity}</Text>
+          <Text style={{ fontSize: 30,color:'#000',fontWeight:'bold' }}>{temperature}</Text>
         </View>
       </View>
     );
@@ -60,7 +64,7 @@ const WeatherUI = () => {
   console.log('time:', JSON.stringify(currentCondition));
 
   React.useEffect(() => {
-    if (location !== null ) {
+    if (location !== null) {
       getWeather();
     }
   }, [location]);
@@ -127,6 +131,7 @@ const WeatherUI = () => {
   //   console.log(windowHeight+''+windowWidth);
   // }
   return (
+    
     <View style={styles.container}>
       <View>
         <Text style={styles.place}>{countrytitle}</Text>
@@ -143,8 +148,15 @@ const WeatherUI = () => {
         fontSize: 18 ,marginLeft:25,color:'#000' }}>{condition} sky.</Text>
         <Text style={{ fontWeight: 'bold', fontSize: 18 ,marginLeft:240, color:'#000', }}>{temperature}{'\u00b0'}</Text>
       </View>
-
-      <FlatList scrollEnabled={false} data={cities ?? []} renderItem={({ item }) => <FlatListSect country={item?.Country?.EnglishName} capitalcity={item?.EnglishName} />} />
+      
+      <FlatList 
+      
+      style={{fontSize:30,top:-40}} data={citiesCondition ?? []} renderItem={({ item }) => <FlatListSect country={item?.Country?.EnglishName} 
+      capitalcity={item?.EnglishName}
+      time={format(new Date(item ? item[0]?.LocalObservationDateTime ?? new Date() : new Date()), 'hh : mm')}
+      // temperature={item ? item[0]?.Temperature?.Metric?.Value ?? '--' : '--' }
+      
+      />} />
     </View>
 
   )
