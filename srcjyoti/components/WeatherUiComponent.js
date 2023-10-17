@@ -2,14 +2,13 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Fontisto from 'react-native-vector-icons/Fontisto';
+
 
 const ICON_BASE_URL = `https://developer.accuweather.com/sites/default/files/`;
 const WeatherUiComponent = ({temperature, condition, countrytitle, date, time, onPress = () => {}, weatherIconNumber}) => {
   const iconNumber = weatherIconNumber.toString().length === 1 ? `0${weatherIconNumber}` : weatherIconNumber;
   return (
-    <TouchableOpacity onPress={onPress}>
+    <View >
       <View style={{flexDirection: 'row', justifyContent: 'space-between', marginVertical: 20, marginHorizontal: 30}}>
         <Entypo name="menu" size={25} color="black" style={{alignSelf: 'center'}} />
         <View>
@@ -23,7 +22,7 @@ const WeatherUiComponent = ({temperature, condition, countrytitle, date, time, o
         <View style={{flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 40, marginVertical: 20}}>
           <View style={{flexDirection: 'row'}}>
             <MaterialCommunityIcons name="globe-model" size={25} color="black" style={{marginRight: 5, marginLeft: -5}} />
-            <Text style={{fontSize: 14, color: 'black', fontWeight: 'bold', textAlign: 'center'}}>{countrytitle}</Text>
+            <TouchableOpacity onPress={onPress}><Text style={{fontSize: 14, color: 'black', fontWeight: 'bold', textAlign: 'center'}}>{countrytitle}</Text></TouchableOpacity>
           </View>
           <View style={{flexDirection: 'row'}}>
             <Image resizeMode="contain" style={{width: 50}} source={{uri: ICON_BASE_URL + `${iconNumber}-s.png`}} />
@@ -39,7 +38,7 @@ const WeatherUiComponent = ({temperature, condition, countrytitle, date, time, o
           <Text style={{fontSize: 23, color: 'black', fontWeight: 'bold'}}>{temperature + '\u00b0'}</Text>
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 

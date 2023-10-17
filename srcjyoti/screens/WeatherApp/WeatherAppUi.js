@@ -8,8 +8,6 @@ import {WeatherUiComponent} from '../../components/WeatherUiComponent';
 import {WeatherUicity_section} from '../../components/WeatherUiComponent';
 import {useNavigation} from '@react-navigation/native';
 import {ROUTES} from '../../navigation/routes';
-import {it} from 'date-fns/locale';
-import {Image} from 'react-native-svg';
 
 const WeatherAppUi = () => {
   const navigation = useNavigation();
@@ -79,15 +77,6 @@ const WeatherAppUi = () => {
     loadDataFromStorage();
   }, []);
 
-  let locationDate = currentCondition ? currentCondition[0]?.LocalObservationDateTime ?? new Date() : new Date();
-
-  let temperature = currentCondition ? currentCondition[0]?.Temperature?.Metric?.Value ?? '--' : '--';
-  let condition = currentCondition ? currentCondition[0]?.WeatherText ?? '--' : '--';
-  let countrytitle = currentLocation ? currentLocation?.EnglishName ?? '--' : '--';
-  let date = format(new Date(locationDate), 'EEEE - dd MMM');
-  let time = format(new Date(locationDate), 'hh : mm');
-  let weatherIconNumber = currentCondition ? currentCondition[0]?.WeatherIcon : 0;
-
   const getCities = async () => {
     try {
       const weatherResponseofcities = await WeatherApi_jyoti.getCurrentConditionforTopcities({num: 50});
@@ -105,7 +94,7 @@ const WeatherAppUi = () => {
         const storecitydata = await AsyncStorage.getItem('citydata');
 
         if (storecitydata) {
-          setCities(storecitydata);
+          setCities(storecitydata);     //setcitiescondition???
         }
       } catch (error) {
         console.log('Error loading data from AsyncStorage:', error);
@@ -116,6 +105,25 @@ const WeatherAppUi = () => {
     getCities();
   }, []);
 
+  let temperature = currentCondition ? currentCondition[0]?.Temperature?.Metric?.Value ?? '--' : '--';
+  let condition = currentCondition ? currentCondition[0]?.WeatherText ?? '--' : '--';
+  let countrytitle = currentLocation ? currentLocation?.EnglishName ?? '--' : '--';
+  let locationDate = currentCondition ? currentCondition[0]?.LocalObservationDateTime ?? new Date() : new Date();
+  let date = format(new Date(locationDate), 'EEEE - dd MMM');
+  let time = format(new Date(locationDate), 'hh : mm');
+  let weatherIconNumber = currentCondition ? currentCondition[0]?.WeatherIcon : 0;
+  // ------------------------------------------------
+  let RealFeel = currentCondition ? currentCondition[0]?.RealFeelTemperature?.Metric?.Value?? '--' : '--';
+  let RealFeelUnit = currentCondition ? currentCondition[0]?.RealFeelTemperature?.Metric?.Unit?? '--' : '--';
+  let Humidity = currentCondition ? currentCondition[0]?.RelativeHumidity?? '--' : '--';
+  let Wind = currentCondition ? currentCondition[0]?.Wind?.Speed?.Metric?.Value?? '--' : '--';
+  let WindUnit = currentCondition ? currentCondition[0]?.Wind?.Speed?.Metric?.Unit?? '--' : '--';
+  let UVIndex = currentCondition ? currentCondition[0]?.UVIndex?? '--' : '--';
+  let Visibility = currentCondition ? currentCondition[0]?.Visibility?.Metric?.Value?? '--' : '--';
+  let VisibilityUnit = currentCondition ? currentCondition[0]?.Visibility?.Metric?.Unit?? '--' : '--';  
+  let Pressure = currentCondition ? currentCondition[0]?.Pressure?.Metric?.Value?? '--' : '--';  
+  let PressureUnit = currentCondition ? currentCondition[0]?.Pressure?.Metric?.Unit?? '--' : '--';  
+
   const onPressScreen = () => {
     navigation.navigate(ROUTES.WeatherUi_Detail, {
       temperature: temperature,
@@ -123,6 +131,16 @@ const WeatherAppUi = () => {
       countrytitle: countrytitle,
       date: date,
       time: time,
+      RealFeel:RealFeel,
+      RealFeelUnit:RealFeelUnit,
+      Humidity: Humidity,
+      Wind: Wind,
+      WindUnit: WindUnit,
+      UVIndex: UVIndex,
+      Visibility: Visibility,
+      VisibilityUnit: VisibilityUnit,
+      Pressure: Pressure,
+      PressureUnit: PressureUnit,
     });
   };
 
@@ -140,7 +158,14 @@ const WeatherAppUi = () => {
         }}
       />
 
-      <FlatList scrollEnabled={false} data={citiesCondition ?? []} renderItem={({item}) => <WeatherUicity_section countryname={item?.Country?.EnglishName} capitalcity={item?.EnglishName} time={format(new Date(item ? item?.LocalObservationDateTime ?? new Date() : new Date()), 'hh : mm')} temperature={item ? item?.Temperature?.Metric?.Value ?? '--' : '--'} weatherIconNumber={item?.WeatherIcon} />} />
+      <FlatList scrollEnabled={false} 
+      data={citiesCondition ?? []} 
+      renderItem={({item}) => 
+      <WeatherUicity_section 
+      countryname={item?.Country?.EnglishName} 
+      capitalcity={item?.EnglishName} 
+      time={format(new Date(item ? item?.LocalObservationDateTime ?? new Date() : new Date()), 'hh : mm')} 
+      temperature={item ? item?.Temperature?.Metric?.Value ?? '--' : '--'} weatherIconNumber={item?.WeatherIcon} />} />
     </ScrollView>
   );
 };
