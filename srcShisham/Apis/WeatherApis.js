@@ -11,12 +11,23 @@ class WeatherApis {
           method: 'GET',
         },
       );
+      
       const data = await response.json();
       console.log('THIS IS RESPONSE', data.length);
 
       return data;
     } catch (error) {
       console.log('ERROR', error);
+    }
+  }
+
+  async getCurrentConditionforTopcities({num}) {
+    try {
+      const response = await fetch(`${BASE_URL}currentconditions/v1/topcities/${num}?apikey=${WEATHER_API_KEY}`, {method: 'GET'});
+
+      return response.json();
+    } catch (error) {
+      console.log('ERRR', error);
     }
   }
   async getLocationWeatherDetail(locationCode) {

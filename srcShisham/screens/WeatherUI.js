@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View, Dimensions, Button, ScrollView } from 'react-native'
+import { FlatList, StyleSheet, Text, View, Dimensions, Button, ScrollView, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Geolocation from '@react-native-community/geolocation';
 import Login from './Login';
@@ -6,15 +6,24 @@ import { format } from 'date-fns';
 import WeatherApis from '../Apis/WeatherApis';
 import MatCom from 'react-native-vector-icons/MaterialCommunityIcons'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
+import { ROUTES } from '../routes/ROUTES';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
+const ICON_BASE_URL = `https://developer.accuweather.com/sites/default/files/`;
 
 const WeatherUI = () => {
-
-  const FlatListSect = ({ country, capitalcity, time,temperature }) => {
+const navigation = useNavigation();
+  const onPress=Value=>{
+    navigation.navigate(ROUTES.WEATHER_SCREEN,Value);
+  }
+  // const iconNumber = weatherIconNumber.toString().length === 1 ? `0${weatherIconNumber}` : weatherIconNumber;
+  const FlatListSect = ({ country, capitalcity, time,temperature,weatherIconNumber }) => {
+    const iconNumber = weatherIconNumber.toString().length === 1 ? `0${weatherIconNumber}` : weatherIconNumber;
     return (
-      <View style={{ borderTopWidth: 1, borderTopColor: '#948885', paddingVertical: 18, paddingHorizontal: 40 }}>
+      <ScrollView style={{ borderTopWidth: 1, borderTopColor: '#948885', paddingVertical: 18, paddingHorizontal: 40 }}>
+      {/* <View style={{ borderTopWidth: 1, borderTopColor: '#948885', paddingVertical: 18, paddingHorizontal: 40 }}> */}
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={{ fontSize: 15 }}>{country}</Text>
           <Text style={{ fontSize: 15 }}>{time}</Text>
@@ -22,8 +31,10 @@ const WeatherUI = () => {
         <View style={{ flexDirection: 'row',justifyContent: 'space-between'}}>
           <Text style={{ fontSize: 35,color:'#000',fontWeight:'bold' }}>{capitalcity}</Text>
           <Text style={{ fontSize: 30,color:'#000',fontWeight:'bold',top:5 }}>{temperature}{'\u00b0'}</Text>
+          <Image resizeMode="contain" style={{width: 50}} source={{uri: ICON_BASE_URL + `${iconNumber}-s.png`}} />
         </View>
-      </View>
+      {/* </View> */}
+      </ScrollView>
     );
   };
 
@@ -59,7 +70,8 @@ const WeatherUI = () => {
   const countrytitle = currentLocation ? currentLocation?.EnglishName ?? '--' : '--';
   const locationDate = currentCondition ? currentCondition[0]?.LocalObservationDateTime ?? new Date() : new Date();
   const date = format(new Date(locationDate), 'EEEE - dd MMM');
-  const time = format(new Date(locationDate), 'hh : mm')
+  const time = format(new Date(locationDate), 'hh : mm');
+  const weatherIconNumber = currentCondition ? currentCondition[0]?.WeatherIcon : 0;
 
   console.log('time:', JSON.stringify(currentCondition));
 
@@ -130,12 +142,14 @@ const WeatherUI = () => {
   // const dim=()=> {
   //   console.log(windowHeight+''+windowWidth);
   // }
+  const iconNumber = weatherIconNumber.toString().length === 1 ? `0${weatherIconNumber}` : weatherIconNumber;
   return (
     
-    <View style={styles.container}>
+    <View style={styles.container}><TouchableOpacity onPress={onPress}>
       <View>
         <Text style={styles.place}>{countrytitle}</Text>
         <MatCom name='weather-cloudy' backgroundColor style={styles.MatIcon} /><Text style={styles.weathercondition}>{condition}</Text>
+        <Image resizeMode="contain" style={MatCom} source={{uri: ICON_BASE_URL + `${iconNumber}-s.png`}} />
       </View>
 
 
@@ -143,11 +157,11 @@ const WeatherUI = () => {
       <Text style={styles.temperature}>{temperature}{'\u00b0'}</Text>
       {/* <Button title='Dimension' onPress={dim}/> */}
 
-      <View style={{ flexDirection: 'row',top:-70, }}>
+      <View style={{ flexDirection: 'row',top:-70,width:windowWidth }}>
         <Text style={{ fontWeight: 'bold', 
         fontSize: 18 ,marginLeft:25,color:'#000' }}>{condition} sky.</Text>
         <Text style={{ fontWeight: 'bold', fontSize: 18 ,marginLeft:240, color:'#000', }}>{temperature}{'\u00b0'}</Text>
-      </View>
+      </View></TouchableOpacity>
       
       <FlatList 
       
@@ -155,7 +169,7 @@ const WeatherUI = () => {
       capitalcity={item?.EnglishName}
       time={format(new Date(item ? item[0]?.LocalObservationDateTime ?? new Date() : new Date()), 'hh : mm')}
       temperature={item ? item?.Temperature?.Metric?.Value ?? '--' : '--' }
-      
+      weatherIconNumber={item?.WeatherIcon}
       />} />
     </View>
 

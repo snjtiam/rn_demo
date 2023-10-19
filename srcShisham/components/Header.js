@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     container:{
       // flex:0.2,
         height:110,
-        width:windowWidth,
+        // width:windowWidth,
         color:'#000',
         borderRadius:30,
         backgroundColor: 'silver'
