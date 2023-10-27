@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { ROUTES } from '../routes/ROUTES';
 import { useSelector, useDispatch } from 'react-redux' 
-import { toggleTheme } from '../redux/appReducer/appReducer';
+import { toggleTheme } from '../redux/app reducer/appReducer';
 import appReducer from '../redux/app reducer/appReducer';
 import Storage from '../../src/utils/Storage';
 const Login = () => {
@@ -15,15 +15,20 @@ const Login = () => {
   const onClick=()=>{
     navigation.navigate(ROUTES.HEADER);
   }
-  const onPressChange=()={
+  const onPressChange=()=>{
     retreive(toggleTheme(!darkMode))
   }
 
   return (
-    <View style={{paddingBottom:'10'}}>
-      <TextInput placeholder='Enter here'/>
-      <Button title='Click' onPress={onClick}/>
-      <Button title='ChangeColor' onPress={onClick}/>
+    <View style={{paddingBottom:'10',
+    backgroundColor:darkMode?'#000':'#fff'
+    }}>
+      <TextInput placeholder='Enter here' 
+      placeholderTextColor={darkMode?'#fff':'#000'} 
+      style={{color:darkMode?'#fff':'#000'}}/>
+
+      <Button title='Click' onPress={onClick} color={darkMode?'ED7D31':'blue'}/>
+      <Button title='ChangeColor' onPress={onPressChange} color={darkMode?'ED7D31':'blue'}/>
 
     </View>
   )
