@@ -1,0 +1,9 @@
+const ROUTES={
+    LOGIN:'LOGIN',
+    HEADER:'HEADER',
+    WEATHER_UI:'WEATHER_UI',
+    WEATHER_SCREEN:'WEATHER_SCREEN'
+
+};
+
+export {ROUTES};
